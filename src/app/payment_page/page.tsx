@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import PayWithCard from "./components/pay_with_card";
+import PaywithBankTransfer from "./components/pay_with_bank_transfer";
 
 function PaymentPage() {
   return (
@@ -57,7 +58,7 @@ function PaymentPage() {
             </div>
 </div>
 <div className="md:2/3 w-full">
-  <PayWithCard/>
+  <PaywithBankTransfer/>
 </div>
 </div>
          

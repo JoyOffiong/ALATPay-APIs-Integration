@@ -2,12 +2,14 @@
 
 import Header from "@/components/header";
 import InputBoxComp from "@/components/inputField";
-import { Button, CircularProgress } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Button, CircularProgress, Modal } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import {CardAPIs} from "../../services/card"
 import { useForm } from "react-hook-form";
 import { businessId } from "@/app/app";
 import { PayWithCardFormData } from "@/app/models/cardModel";
+import style from "@/components/style";
+import { useRouter } from "next/router";
 
 
 function PayWithCard() {
@@ -17,11 +19,21 @@ function PayWithCard() {
 
 const [redirect, setRedirect] = useState<string>("")
 const [loading, setLoading] = useState<boolean>(false)
-
+const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
 
   const { control, handleSubmit } = useForm<PayWithCardFormData>({
     mode: "onChange"
       });
+
+      // const router = useRouter()
+      //  useEffect(() => {
+      //     if (router) {
+      //       console.log("Router is mounted");
+      //     }
+      //   }, [router]);
+      const closeOTPModal =()=>{
+        setShowOTPModal(false)
+      }
 
       const onsubmit=(data:PayWithCardFormData)=>{
         setLoading(true)
@@ -57,20 +69,7 @@ const [loading, setLoading] = useState<boolean>(false)
       }).then((response:any) => {
         setLoading(false)
         setRedirect(response.data.data.redirectHtml)
-        if(redirect){
-          return(
-            <div>
-            {!loading && redirect && (
-              <iframe
-            srcDoc={redirect}
-            style={{ width: "100%", height: "500px", border: "none" }}
-            title="Authentication Page"
-          ></iframe>
-             )
-            }
-          </div>
-          )
-        }
+       setShowOTPModal(true)
        
       })
       .catch((error:any) => {
@@ -137,8 +136,30 @@ const [loading, setLoading] = useState<boolean>(false)
         </form>
         
       </div>
-
-     
+      
+            <div>
+            {!loading && redirect !== null && (
+              <div>
+               <Modal
+               open={showOTPModal}
+               onClose={closeOTPModal}
+               aria-labelledby="modal-modal-title"
+               aria-describedby="modal-modal-description"
+             >
+               <Box sx={style}>
+              <iframe
+            srcDoc={redirect}
+            style={{ width: "100%", height: "500px", border: "none" }}
+            title="Authentication Page"
+          ></iframe></Box>
+           </Modal>
+              </div>
+              
+             )
+            }
+          </div>
+       
+      
     </div>
   );
 }
