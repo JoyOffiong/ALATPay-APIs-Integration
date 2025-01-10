@@ -57,11 +57,10 @@ const [loading, setLoading] = useState<boolean>(false)
       }).then((response:any) => {
         setLoading(false)
         setRedirect(response.data.data.redirectHtml)
-        if(redirect !== null){
+        if(redirect){
           return(
             <div>
-            {
-             !loading && redirect && (
+            {!loading && redirect && (
               <iframe
             srcDoc={redirect}
             style={{ width: "100%", height: "500px", border: "none" }}
