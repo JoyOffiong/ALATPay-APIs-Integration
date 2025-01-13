@@ -44,7 +44,7 @@ const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
        CardAPIs.initialiseCard({
         cardNumber: data.cardNumber,
         currency: "NGN",
-        businessId: businessId,
+        businessId,
       })
     .then((response:any) => {
 
@@ -55,7 +55,7 @@ const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
        CardAPIs.authenticateCard({
         cardNumber: data.cardNumber,
         currency: "NGN",
-        businessId: businessId,
+        businessId,
         channel:"1",
         description:"Blaqkly checkout",
         customer:customerData,

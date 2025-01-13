@@ -18,7 +18,6 @@ const initialiseCard = (data: PayWithCardFormData) => {
           }
         )
         .then((res) => {
-          console.log(res);
           resolve(res);
         })
         .catch((error) => {
