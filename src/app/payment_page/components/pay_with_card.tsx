@@ -10,6 +10,7 @@ import { businessId } from "@/app/app";
 import { PayWithCardFormData } from "@/app/models/cardModel";
 import style from "@/components/style";
 import { useRouter } from "next/router";
+import LoadingButton from "@/components/loadingbutton";
 
 
 function PayWithCard() {
@@ -118,18 +119,9 @@ const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
         </div>
 
         <div className="flex flex-end justify-end " >
-                <Button 
-                sx={{
-                    '&:hover': {
-      backgroundColor: 'blue',
-                      display:"flex",
-                      flexDirection:"row",
-                      gap:"2px"
-    },
-                }}
-                type="submit" className="bg-secondary px-6 py-1 rounded-md bg-blue-600 border-2 text-white border-blue-400 text-lightBrown">
-                    Pay  {loading ? <CircularProgress size= "5px"/>  : ""}
-                </Button>
+               <LoadingButton
+                text="Pay" 
+                loading={loading}/>
               </div>
         
         </div>

@@ -9,5 +9,5 @@ export interface PayWithBankTransferData {
     customer?: Object,
     description?: string,
     channel?: string,
-    transactionID?: string
+    transactionId?: string
   }
