@@ -24,6 +24,7 @@ function PaywithBankTransfer() {
 
               // setTimeout(() => {
                 
+              
               // }, 10000);
 
   })
