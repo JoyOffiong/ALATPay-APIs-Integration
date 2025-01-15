@@ -4,15 +4,12 @@
 import React, { useEffect, useState } from 'react'
 import LoadingButton from '@/components/loadingbutton';
  
-interface VirtualAccount {
-  virtualBankAccountNumber: string;
-    bankName: string;
-    accountName: string;
-    expirationDate?: string; // Optional property
+interface Props {
+  VA_Response: object;
+   
   }
-function PaywithBankTransfer({accountName, virtualBankAccountNumber, bankName,expirationDate}:VirtualAccount) {
-  console.log(virtualBankAccountNumber.)
-  console.log(virtualBankAccountNumber)
+function PaywithBankTransfer(VA_Response:Props) {
+  console.log(VA_Response)
 const [pendingMode , setPendingMode] = useState<boolean>(false) 
 const [loading, setLoading] =  useState<boolean>(false)
 
@@ -34,7 +31,7 @@ const [loading, setLoading] =  useState<boolean>(false)
          {/* businessName */}
          <p className='text-lg font-bold'>Blaqkly</p>
          {/* Account Number */}
-         <p className='text-2xl font-bold'>{virtualBankAccountNumber}</p>
+         <p className='text-2xl font-bold'></p>
          {/* Bank */}
          <p className='text-base font-light '>Wema Bank</p>
 
