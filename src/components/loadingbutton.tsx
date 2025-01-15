@@ -18,8 +18,8 @@ backgroundColor: 'blue',
           gap:"2px"
 },
     }}
-    type="submit" className="bg-secondary px-6 py-1 rounded-md bg-blue-600 border-2 text-white border-blue-400 text-lightBrown">
-        Pay  {loading ? <CircularProgress size= "10px"/>  : ""}
+    type="submit" className="bg-secondary flex gap-4 px-6 py-1 rounded-md bg-blue-600 border-2 text-white border-blue-400 text-lightBrown">
+        {loading ? <CircularProgress size= "20px" color="inherit"/>:"Pay"}
     </Button>
   )
 }

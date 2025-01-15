@@ -2,11 +2,11 @@
 
 import { Modal, Box, Button } from '@mui/material';
 import style from "./style";
-import { useNavigate } from 'react-router';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import InputBoxComp from './inputField';
-import { metadata } from '@/app/layout';
+import LoadingButton from './loadingbutton';
+import { toast, ToastContainer } from 'react-toastify';
 
 type Props = {
     handleCloseCustomerModal: () => void;
@@ -23,12 +23,23 @@ type Props = {
 
 function CustomerInfo({handleCloseCustomerModal, openCustomerModal}:Props) {
 
+  const notify = () => {
+    toast("Customer information received");
+  };
 const {control, handleSubmit} = useForm({mode:"onChange"})
+const [loading, setLoading] = useState<boolean>(false)
 
 const submit=(data:ICustomer)=>{
+
+    setLoading(true)
+
     localStorage.setItem("customer", JSON.stringify({...data, metadata:""}));
+  
+    notify();
     
-    handleCloseCustomerModal()
+    setTimeout(() => {
+      handleCloseCustomerModal()
+    }, 2000);
 
 }
 
@@ -80,14 +91,14 @@ const submit=(data:ICustomer)=>{
               />
             </div>
             <div className="flex flex-end justify-end">
-              <Button type="submit" className="bg-secondary text-lightBrown">
-                Add
-              </Button>
-            </div>
+              <LoadingButton text="Add" loading={loading}/>
+             </div>
           </div>
         </form>
       </Box>
     </Modal>
+    <ToastContainer />
+
   </div>
   )
 }

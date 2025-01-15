@@ -1,34 +1,22 @@
-import { BankTransferAPIs } from '@/app/services/bankTransfer';
-import { businessId } from "@/app/app";
-import { v4 as uuidv4 } from 'uuid';
+"use client"
 
 
 import React, { useEffect, useState } from 'react'
 import LoadingButton from '@/components/loadingbutton';
-
-function PaywithBankTransfer() {
-  
- const [virtualAccount, setVirtualAccount] = useState<object>([])
+ 
+interface VirtualAccount {
+  virtualBankAccountNumber: string;
+    bankName: string;
+    accountName: string;
+    expirationDate?: string; // Optional property
+  }
+function PaywithBankTransfer({accountName, virtualBankAccountNumber, bankName,expirationDate}:VirtualAccount) {
+  console.log(virtualBankAccountNumber.)
+  console.log(virtualBankAccountNumber)
 const [pendingMode , setPendingMode] = useState<boolean>(false) 
 const [loading, setLoading] =  useState<boolean>(false)
 
- useEffect(() => {
-  const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
-  BankTransferAPIs.createVirtualAccount({
-          businessId,
-          channel:"3",
-          currency: "NGN",
-          description:"Blaqkly checkout",
-          customer:customerData,
-          businessName: "Blaqkly",  
-          orderId: `OID- ${uuidv4()}`,
-          amount: 100}).then((res:any)=>{
-              setVirtualAccount(res)
-              setPendingMode(true)
-          })
 
-
-});
 
 // const confirmPayment=()=>{
 //   BankTransferAPIs.ConfirmTransfer().then((res)=>{
@@ -41,12 +29,12 @@ const [loading, setLoading] =  useState<boolean>(false)
     <>
    
      <div className='shadow-lg p-4 space-y-3 w-full bg-white'>
-      {!pendingMode ? 
+      {pendingMode === false ? 
       ( <div className='mx-auto text-center leading-4'>
          {/* businessName */}
          <p className='text-lg font-bold'>Blaqkly</p>
          {/* Account Number */}
-         <p className='text-2xl font-bold'>1231232323</p>
+         <p className='text-2xl font-bold'>{virtualBankAccountNumber}</p>
          {/* Bank */}
          <p className='text-base font-light '>Wema Bank</p>
 

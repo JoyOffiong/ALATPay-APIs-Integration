@@ -38,3 +38,7 @@ const validateOTP =(data:PayWithBankDetailsData)=>{
         })
     })
 }
+
+export const BankDetailsAPI={
+    sendOTP, validateOTP
+}

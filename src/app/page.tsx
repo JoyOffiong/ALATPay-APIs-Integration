@@ -51,6 +51,7 @@ function App() {
   }, [router]);
     const handleCloseCustomerModal=()=>{
       setOpenCustomerModal(false)
+          
       router.push("../payment_page");
     }
 
