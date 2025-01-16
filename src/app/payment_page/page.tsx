@@ -80,7 +80,7 @@ function PaymentPage() {
               </div>
 
               <div>
-                  <div    className={`p-2 text-xs text-left flex items-center gap-2 font-medium border-2 transition-all duration-300 cursor-pointer ${
+                  <div className={`p-2 text-xs text-left flex items-center gap-2 font-medium border-2 transition-all duration-300 cursor-pointer ${
                     current === "card" ? "bg-slate-300 border-[#000]" : "border-[#6e6e6e]"
                   } hover:bg-slate-300 rounded-md`}
                   onClick={() => setCurrent("card")}>

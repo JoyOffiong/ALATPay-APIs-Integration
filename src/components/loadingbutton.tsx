@@ -4,13 +4,17 @@ import React from 'react'
 
 type props= {
   loading: boolean,
-  text: string,
+  text?: string,
+  onClick?:()=>void
 }
 
-function LoadingButton({loading, text}:props) {
+function LoadingButton({loading, text, onClick}:props) {
   return (
     <Button
     sx={{
+      backgroundColor: "blue",
+      color:"white",
+      textTransform:"capitalize",
         '&:hover': {
 backgroundColor: 'blue',
           display:"flex",
@@ -18,8 +22,8 @@ backgroundColor: 'blue',
           gap:"2px"
 },
     }}
-    type="submit" className="bg-secondary flex gap-4 px-6 py-1 rounded-md bg-blue-600 border-2 text-white border-blue-400 text-lightBrown">
-        {loading ? <CircularProgress size= "20px" color="inherit"/>:"Pay"}
+   onClick={onClick}    type="submit" className="bg-secondary flex gap-4 px-6 py-1 rounded-md bg-blue-600 border-2 text-white border-blue-400 text-lightBrown">
+        {loading ? <CircularProgress size= "20px" color="inherit"/>:`${text}`}
     </Button>
   )
 }

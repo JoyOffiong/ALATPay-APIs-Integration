@@ -49,6 +49,8 @@ function App() {
       console.log("Router is mounted");
     }
   }, [router]);
+
+
     const handleCloseCustomerModal=()=>{
       setOpenCustomerModal(false)
           
@@ -59,6 +61,8 @@ function App() {
       setOpenCustomerModal(true)
     }
 
+
+    
   const fetchItemById = (id: string) => {
     setUpdate(true)
     setOpen(true);

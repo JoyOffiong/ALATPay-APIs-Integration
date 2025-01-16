@@ -74,11 +74,11 @@ const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
        
       })
       .catch((error:any) => {
-        console.error("Error authenticating card:", error);
+        setLoading(false)
       });
         })
     .catch((error:any) => {
-      console.error("Error initializing card:", error);
+setLoading(false)
     });
 
     

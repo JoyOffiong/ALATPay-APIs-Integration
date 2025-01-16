@@ -31,7 +31,7 @@ const ConfirmTransfer= (data:PayWithBankTransferData)=>{
                     }
             }
         ).then((res)=>{
-            resolve(res);
+            resolve(res.data);
         }).catch((error)=>{
             reject(error)
         })
@@ -39,5 +39,6 @@ const ConfirmTransfer= (data:PayWithBankTransferData)=>{
 }
 
 export const BankTransferAPIs={
-    createVirtualAccount, ConfirmTransfer
+    createVirtualAccount,
+    ConfirmTransfer
 }
