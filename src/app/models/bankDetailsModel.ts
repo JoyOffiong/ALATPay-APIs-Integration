@@ -9,7 +9,7 @@ export interface PayWithBankDetailsData {
     transactionId?: string,
     channel: string,
     otp?: string,
-    amount: string,
+    amount: number,
     accountNumber: string,
     bankCode: string,
     customer: object

@@ -2,8 +2,13 @@ import { PayWithBankDetailsData } from '@/app/models/bankDetailsModel';
 import { BankDetailsAPI } from '@/app/services/bankDetails';
 import InputBoxComp from '@/components/inputField'
 import LoadingButton from '@/components/loadingbutton'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { businessId } from "../../app";
+import verify from "../../../images/verify.png";
+import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
 
 function PayWithBankDetails() {
 
@@ -11,43 +16,143 @@ function PayWithBankDetails() {
       mode: "onChange"
         });
 const [loading, setLoading] = useState<boolean>(false)
+const [otpScreen, setOtpScreen] = useState<boolean>(false)
+  const [successScreen, setSuccessScreen] = useState<boolean>(false);
+
+  const router = useRouter(); 
+  useEffect(() => {
+    if (router) {
+      console.log("Router is mounted");
+    }
+  }, [router]);
+  const navigateBack =()=>{
+    router.push
+  }
+const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
 
 const onsubmit=(data:PayWithBankDetailsData)=>{
   setLoading(true)
-  BankDetailsAPI.sendOTP(data).then((res)=>{
+  BankDetailsAPI.sendOTP({
+      accountNumber: data.accountNumber,
+            currency: "NGN",
+             businessId,
+                    channel:"1",
+                    description:"Blaqkly checkout",
+                    customer:customerData,
+                    bankCode: "035",
+
+                    businessName: "Blaqkly",  
+            orderId: `OID- ${uuidv4()}`,
+                    amount: 100,
+          }
+  )
+  .then((res)=>{
     console.log(res)
+    setLoading(false)
+    setOtpScreen(true)
+  })
+  .catch((err:any)=>{
+    setLoading(false)
+    ,
+  })
+}
+
+const submitOTP=(data:PayWithBankDetailsData)=>{
+  setLoading(true)
+  BankDetailsAPI.validateOTP(data)
+  .then((res:any)=>{
+    setLoading(false)
+    if(res.message){
+      setSuccessScreen(true)
+    }
+  })
+  .catch((err:any)=>{
+    setLoading(false)
   })
 }
   return (
     <div>
-    <div className="shadow-lg p-4 space-y-3 w-full bg-white ">
-      <p className=" font-bold text-2xl my-10">
-        Pay with Card
-      </p>
+    <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
+      { !otpScreen ? (
+         <div>
+         <p className=" font-medium text-xl">
+          Enter your Wema Bank Account Number
+         </p>
+        
+         <form onSubmit={handleSubmit(onsubmit)} >
+         <div className='mt-4'>
+   
+         <div>
+         <InputBoxComp 
+         name="accountNumber"
+          control={control}
+                   type="text"
+                   label="account number" />
+         </div>
+   
+         <div className="flex flex-end mt-4 justify-end " >
+                <LoadingButton
+                 text="Pay" 
+                 loading={loading}
+                 />
+               </div>
+         
+         </div>
+         </form>
+         </div>
+      ) :
+      (
+        <div>
+        <p className=" font-medium text-xl">
+         Enter OTP
+        </p>
+       
+        <form onSubmit={handleSubmit(submitOTP)} >
+        <div className='mt-4'>
+  
+        <div>
+        <InputBoxComp 
+        name="otp"
+         control={control}
+                  type="text"
+                  label="OTP" />
+        </div>
+  
+        <div className="flex flex-end mt-4 justify-end " >
+               <LoadingButton
+                text="Pay" 
+                loading={loading}
+                />
+              </div>
+        
+        </div>
+        </form>
+        </div>
+      )
+
+      }
      
-      <form onSubmit={handleSubmit(onsubmit)} >
-      <div className="space-y-8">
-
-      <div>
-      <InputBoxComp 
-      name="cardNumber"
-       control={control}
-                type="text"
-                label="Card Number" />
-      </div>
-
-      <div className="flex flex-end justify-end " >
-             <LoadingButton
-              text="Pay" 
-              loading={loading}/>
-            </div>
-      
-      </div>
-      </form>
+     
       
     </div>
     
-     
+    <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
+    {successScreen && (
+        <div className="space-y-4">
+          <p className="text-lg font-bold">Transaction Successful</p>
+          <Image src={verify} alt="verify" width={100} height={100} />
+          <div className="text-center flex justify-center">
+                  <button
+                    onClick={() => navigateBack()}
+                    className="bg-secondary flex gap-4 px-6 py-3 rounded-md bg-blue-600  text-white border-blue-400 text-lightBrown"
+                  >
+Close                  </button>
+                </div>
+
+        </div>
+      )}
+    </div>
+    
     
   </div>
   )
