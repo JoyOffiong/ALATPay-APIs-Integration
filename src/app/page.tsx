@@ -9,6 +9,7 @@ import toDo from "../images/to-do.avif";
 import React, { useState, useEffect } from "react";
 import CustomerInfo from "@/components/customerInfo";
 import { useRouter } from "next/navigation";
+import UseALATPay from "./services/useALATPay";
 
 interface T {
   id: string;
@@ -23,6 +24,13 @@ function App() {
   const [rows, setRows] = useState<Array<T>>([]);
   const [update, setUpdate] = useState<boolean>(false);
   const [tasks, setTasks] = useState<T>();
+
+  const [openModal,  setOpenModal] = useState<boolean>(false)
+
+  const handleCloseModal=()=>{
+      setOpenModal(false)
+    
+    }
 
   const Tableheadings = [
     { label: "S/N" },
@@ -111,6 +119,11 @@ function App() {
         >
           Add Tasks
         </Button>
+        <Button
+          sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
+          onClick={() => setOpenModal(true)}
+        > Fund Wallet
+        </Button>
       </div>
       <div className="w-full">
         <TableComponent
@@ -142,7 +155,15 @@ function App() {
        handleCloseCustomerModal={handleCloseCustomerModal}  
        />
      )}
+
+     {openModal &&(
+          < UseALATPay
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          />
+     )}
     </div>
+
     
   );
 }

@@ -53,7 +53,7 @@ const onsubmit=(data:PayWithBankDetailsData)=>{
   })
   .catch((err:any)=>{
     setLoading(false)
-    ,
+    
   })
 }
 
@@ -129,7 +129,6 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
         </form>
         </div>
       )
-
       }
      
      

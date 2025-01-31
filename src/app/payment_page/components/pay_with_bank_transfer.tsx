@@ -30,7 +30,7 @@ function PaywithBankTransfer({ VA_Response }: Props) {
     }
   }, [router]);
   const navigateBack =()=>{
-    router.push
+    router.push("../")
   }
 
   const ConfirmationPage = () => {

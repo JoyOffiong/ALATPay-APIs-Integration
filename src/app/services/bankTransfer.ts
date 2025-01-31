@@ -19,7 +19,7 @@ const createVirtualAccount = (data:PayWithBankTransferData)=>{
             reject(error)
         })
     })
-}
+} 
 
 const ConfirmTransfer= (data:PayWithBankTransferData)=>{
     return new Promise((resolve, reject)=>{
