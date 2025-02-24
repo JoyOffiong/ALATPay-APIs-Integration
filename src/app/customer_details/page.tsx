@@ -31,10 +31,13 @@ function Customer_Details() {
   }, [alatPayInitialized]);
 
   const payments=[
-   {value:1000, label:"Level 1 - N1,000"},
-   {value:2500 ,label:"Level 2 - N2500"}, 
-   {value:5000, label:"Level 3 - N5000"}, {value:10000, label:"Level 4 - 10000"}
+   {value:1000, label:"Level 1 - ₦1,000"},
+   {value:2500 ,label:"Level 2 - ₦2,500"}, 
+   {value:5000, label:"Level 3 - ₦5,000"}, {value:10000, label:"Level 4 - ₦10,000"}
+
   ]
+  const formattedPayments = payments.map(p => ({ value: String(p.value), label: p.label }));
+
 
   const location=[
     {value:"nigeria", label:"Nigeria"}, {value:"diaspora", label:"Diaspora"}
@@ -88,8 +91,8 @@ localStorage.setItem(
     };
 
     try {
-      const newPopup = window.Alatpay.setup(config);
-      if (newPopup) {
+        const newPopup = (window as any).Alatpay.setup(config);
+        if (newPopup) {
         console.log("Popup initialized:", newPopup);
         newPopup.show();
       } else {
@@ -199,7 +202,7 @@ localStorage.setItem(
             </div>
             <div className="w-full">
                 <label htmlFor="">Class of Payment made by Donor</label>
-                <SelectBoxComp data={payments} name="amount" control={control} />
+                <SelectBoxComp data={formattedPayments} name="amount" control={control} />
 
             </div>
           </div>
