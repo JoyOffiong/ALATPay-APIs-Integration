@@ -30,10 +30,10 @@ export default function TableComponent() {
   const Tableheadings=[
   {label:"S/N"}, {label:"First Name"}, {label:"Last Name"}, {label:"Email"}]
 
-    useEffect(() => {
-      const row = JSON.parse(localStorage.getItem("customer") || "[]");
-      setRows(row);
-    }, []);
+    // useEffect(() => {
+    //   const row = JSON.parse(localStorage.getItem("customer") || "[]");
+    //   setRows(row);
+    // }, []);
 
   
   return (

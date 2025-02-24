@@ -61,16 +61,16 @@ const title=[
   const submit = (formData: any) => {
 
 // Retrieve and parse existing data, ensuring it's always an array
-const users = JSON.parse(localStorage.getItem("customer") ?? "[]");
+//const users = JSON.parse(localStorage.getItem("customer") ?? "[]");
 
 // Store updated array by spreading existing data and adding new entry
-localStorage.setItem(
-  "customer",
-  JSON.stringify([
-    ...(Array.isArray(users) ? users : []), 
-    { ...formData, metadata: "" }
-  ])
-);
+// localStorage.setItem(
+//   "customer",
+//   JSON.stringify([
+//     ...(Array.isArray(users) ? users : []), 
+//     { ...formData, metadata: "" }
+//   ])
+// );
 
     const config = {
       apiKey: "2b11fe4f55244516bcf9040f733eeaef",

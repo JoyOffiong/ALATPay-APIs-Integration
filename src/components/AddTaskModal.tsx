@@ -34,30 +34,30 @@ function AddTasks({ update, open, handleClose, setTasks, tasks, setRefetch }: Pr
   });
 
   const submit = (data: Omit<IData, "id">) => {
-    const info = JSON.parse(localStorage.getItem("tasks") || "[]");
-    if (tasks.id) {
-      const updateThis = info?.findIndex((row: IData) => row.id === tasks.id);
-      if (updateThis !== -1) {
-        info[updateThis] = {
-          ...data,
-          id: tasks?.id,
-          index: info[updateThis].index,
-        };
-        localStorage.setItem("tasks", JSON.stringify(info));
-        setTasks({});
-        handleClose();
-        setRefetch(true);
-        return;
-      }
-    }
-    const newIndex = info.length;
-    const newId = uuidv4();
-    const newData = { ...data, id: newId, index: newIndex };
-    info.push(newData);
-    localStorage.setItem("tasks", JSON.stringify(info));
-    setTasks({});
-    handleClose();
-    setRefetch(true);
+ //   const info = JSON.parse(localStorage.getItem("tasks") || "[]");
+    // if (tasks.id) {
+    //   const updateThis = info?.findIndex((row: IData) => row.id === tasks.id);
+    //   if (updateThis !== -1) {
+    //     info[updateThis] = {
+    //       ...data,
+    //       id: tasks?.id,
+    //       index: info[updateThis].index,
+    //     };
+    //     localStorage.setItem("tasks", JSON.stringify(info));
+    //     setTasks({});
+    //     handleClose();
+    //     setRefetch(true);
+    //     return;
+    //   }
+    // }
+    // const newIndex = info.length;
+    // const newId = uuidv4();
+    // const newData = { ...data, id: newId, index: newIndex };
+    // info.push(newData);
+    // localStorage.setItem("tasks", JSON.stringify(info));
+    // setTasks({});
+    // handleClose();
+    // setRefetch(true);
   };
   return (
     <div>

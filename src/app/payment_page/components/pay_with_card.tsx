@@ -18,7 +18,7 @@ import { headers } from "next/headers";
 function PayWithCard() {
 
 
-  const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
+  //const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
 
 const [redirect, setRedirect] = useState<string>("")
 const [loading, setLoading] = useState<boolean>(false)
@@ -45,62 +45,62 @@ const [orderId, setOrderId] = useState<string>("")
         const cardYear = data?.MonthYear?.split("/").pop()
         const cardMonth = data.MonthYear?.slice(0, 2)
       
-        //initialize card
-       CardAPIs.initialiseCard({
-        cardNumber: data.cardNumber,
-        currency: "NGN",
-        businessId,
-      })
-    .then((response:any) => {
+//         //initialize card
+//        CardAPIs.initialiseCard({
+//         cardNumber: data.cardNumber,
+//         currency: "NGN",
+//         businessId,
+//       })
+//     .then((response:any) => {
 
-      const transid= response.data.data.transactionId;
-      const orderid= response.data.data.orderId;
+//       const transid= response.data.data.transactionId;
+//       const orderid= response.data.data.orderId;
      
-      //authenticate Card
-       CardAPIs.authenticateCard({
-        cardNumber: data.cardNumber,
-        currency: "NGN",
-        businessId,
-        channel:"1",
-        description:"Blaqkly checkout",
-        customer:customerData,
-        businessName: "Blaqkly",  
-        transactionId: transid,
-        orderId: orderid,
-        amount: 100,
-        securityCode:data.securityCode,
-        cardMonth,
-        cardYear
-      }).then((response:any) => {
-        setLoading(false)
-        setRedirect(response.data.data.redirectHtml)
-        setShowOTPModal(true)
-        setTransId(response.data.data.transactionId)
-        setOrderId(response.data.data.orderId)
+//       //authenticate Card
+//        CardAPIs.authenticateCard({
+//         cardNumber: data.cardNumber,
+//         currency: "NGN",
+//         businessId,
+//         channel:"1",
+//         description:"Blaqkly checkout",
+//         customer:customerData,
+//         businessName: "Blaqkly",  
+//         transactionId: transid,
+//         orderId: orderid,
+//         amount: 100,
+//         securityCode:data.securityCode,
+//         cardMonth,
+//         cardYear
+//       }).then((response:any) => {
+//         setLoading(false)
+//         setRedirect(response.data.data.redirectHtml)
+//         setShowOTPModal(true)
+//         setTransId(response.data.data.transactionId)
+//         setOrderId(response.data.data.orderId)
        
-          setTimeout(() => {
-            try {
-              console.log("logout")
-              axios.post("https://apibox.alatpay.ng/alatpay-external-mpgs/api/v1/paymentCard/mc/authenticate/callback", {transId, orderId}).then((res)=>{
-                console.log(res)
-                if(res.status === 200){
-                  window.location.href = "./";
-                }
-              })
-            } catch (error) {
-              console.log(error)
-            }
+//           setTimeout(() => {
+//             try {
+//               console.log("logout")
+//               axios.post("https://apibox.alatpay.ng/alatpay-external-mpgs/api/v1/paymentCard/mc/authenticate/callback", {transId, orderId}).then((res)=>{
+//                 console.log(res)
+//                 if(res.status === 200){
+//                   window.location.href = "./";
+//                 }
+//               })
+//             } catch (error) {
+//               console.log(error)
+//             }
             
-          }, 50000);
+//           }, 50000);
 
-      })
-      .catch((error:any) => {
-        setLoading(false)
-      });
-        })
-    .catch((error:any) => {
-setLoading(false)
-    });
+//       })
+//       .catch((error:any) => {
+//         setLoading(false)
+//       });
+//         })
+//     .catch((error:any) => {
+// setLoading(false)
+//     });
 
     
      }

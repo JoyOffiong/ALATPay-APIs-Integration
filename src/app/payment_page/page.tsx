@@ -25,13 +25,13 @@ function PaymentPage() {
   const [VA_Response, setVA_Response] = useState<VirtualAccount[]>([]);
 
   const fetchAccountNumber=()=>{
-    const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
+    // const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
     BankTransferAPIs.createVirtualAccount({
             businessId,
             channel:"3",
             currency: "NGN",
             description:"Blaqkly checkout",
-            customer:customerData,
+          //  customer:customerData,
             businessName: "Blaqkly",  
             orderId: `OID- ${uuidv4()}`,
             amount: 100}).then((res:any)=>{

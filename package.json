@@ -15,7 +15,7 @@
     "axios": "^1.7.9",
     "lucide-react": "^0.417.0",
     "my-todos-app": "file:",
-    "next": "14.2.5",
+    "next": "^15.1.7",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",

@@ -31,35 +31,35 @@ const [otpScreen, setOtpScreen] = useState<boolean>(false)
   const navigateBack =()=>{
     router.push
   }
-const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
+//const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
 
 const onsubmit=(data:PayWithBankDetailsData)=>{
-  setLoading(true)
-  BankDetailsAPI.sendOTP({
-      accountNumber: data.accountNumber,
-            currency: "NGN",
-             businessId,
-                    channel:"1",
-                    description:"Blaqkly checkout",
-                    customer:customerData,
-                    bankCode: "035",
+  // setLoading(true)
+  // BankDetailsAPI.sendOTP({
+  //     accountNumber: data.accountNumber,
+  //           currency: "NGN",
+  //            businessId,
+  //                   channel:"1",
+  //                   description:"Blaqkly checkout",
+  //                   customer:customerData,
+  //                   bankCode: "035",
 
-                    businessName: "Blaqkly",  
-            orderId: `OID- ${uuidv4()}`,
-                    amount: 100,
-          }
-  )
-  .then((res:any)=>{
-    console.log(res)
-    setLoading(false)
-    setOtpScreen(true)
-    setTransId(res.transactionId)
-    reset({})
-  })
-  .catch((err:any)=>{
-    setLoading(false)
+  //                   businessName: "Blaqkly",  
+  //           orderId: `OID- ${uuidv4()}`,
+  //                   amount: 100,
+  //         }
+  // )
+  // .then((res:any)=>{
+  //   console.log(res)
+  //   setLoading(false)
+  //   setOtpScreen(true)
+  //   setTransId(res.transactionId)
+  //   reset({})
+  // })
+  // .catch((err:any)=>{
+  //   setLoading(false)
     
-  })
+  // })
 }
 
 const submitOTP=(data:PayWithBankDetailsData)=>{

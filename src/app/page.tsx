@@ -80,12 +80,12 @@ function App() {
 
   <div>
     <Link href="../customer_details">
-  <Button
-          sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
+  <button className="bg-[#272934] text-[#fff4a3] p-2 rounded-md"
+      
          // onClick={() => setOpenModal(true)}
         > 
         Register Here
-        </Button>
+        </button>
         </Link>
 
   </div>

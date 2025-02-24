@@ -19,10 +19,10 @@ function PaywithBankTransfer({ VA_Response }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const [successScreen, setSuccessScreen] = useState<boolean>(false);
 
-  localStorage.setItem(
-    "transactionID",
-    JSON.stringify(VA_Response.transactionId)
-  );
+  // localStorage.setItem(
+  //   "transactionID",
+  //   JSON.stringify(VA_Response.transactionId)
+  // );
   const router = useRouter(); 
   useEffect(() => {
     if (router) {
@@ -39,24 +39,24 @@ function PaywithBankTransfer({ VA_Response }: Props) {
 
   const confirmPayment = () => {
     setLoading(true);
-    const TRANSID = JSON.parse(localStorage.getItem("transactionID") || "[]");
-    console.log(TRANSID);
-    setLoading(true);
-    if (TRANSID) {
-      setTimeout(() => {
-        BankTransferAPIs.ConfirmTransfer({ transactionId: TRANSID })
-          .then((res: any) => {
-            setLoading(false);
-            if (res.message === "Success") {
-              setPendingMode(false)
-              setSuccessScreen(true);
-            }
-          })
-          .catch(() => {
-            setLoading(false);
-          });
-      }, 5000);
-    }
+    // const TRANSID = JSON.parse(localStorage.getItem("transactionID") || "[]");
+    // console.log(TRANSID);
+    // setLoading(true);
+    // if (TRANSID) {
+    //   setTimeout(() => {
+    //     BankTransferAPIs.ConfirmTransfer({ transactionId: TRANSID })
+    //       .then((res: any) => {
+    //         setLoading(false);
+    //         if (res.message === "Success") {
+    //           setPendingMode(false)
+    //           setSuccessScreen(true);
+    //         }
+    //       })
+    //       .catch(() => {
+    //         setLoading(false);
+    //       });
+    //   }, 5000);
+    // }
   };
 
   return (
