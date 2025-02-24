@@ -1,3 +1,5 @@
+"use client"
+
 import { Modal, Box, Button } from "@mui/material";
 
 import { v4 as uuidv4 } from "uuid";

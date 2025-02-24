@@ -1,3 +1,5 @@
+"use client"
+
 import { PayWithBankDetailsData } from '@/app/models/bankDetailsModel';
 import { BankDetailsAPI } from '@/app/services/bankDetails';
 import InputBoxComp from '@/components/inputField'
