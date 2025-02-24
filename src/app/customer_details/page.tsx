@@ -7,6 +7,7 @@ import { Modal, Box } from "@mui/material";
 import { Currency } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { metadata } from "../layout";
 
 function Customer_Details() {
   const [alatPayInitialized, setAlatPayInitialized] = useState(false);
@@ -56,7 +57,17 @@ const title=[
 
   const submit = (formData: any) => {
 
-    localStorage.setItem("customer", JSON.stringify({ ...formData, metadata: "" }));
+// Retrieve and parse existing data, ensuring it's always an array
+const users = JSON.parse(localStorage.getItem("customer") ?? "[]");
+
+// Store updated array by spreading existing data and adding new entry
+localStorage.setItem(
+  "customer",
+  JSON.stringify([
+    ...(Array.isArray(users) ? users : []), 
+    { ...formData, metadata: "" }
+  ])
+);
 
     const config = {
       apiKey: "2b11fe4f55244516bcf9040f733eeaef",

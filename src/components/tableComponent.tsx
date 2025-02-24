@@ -31,7 +31,7 @@ export default function TableComponent() {
   {label:"S/N"}, {label:"First Name"}, {label:"Last Name"}, {label:"Email"}]
 
     useEffect(() => {
-      const row = JSON.parse(localStorage.getItem("customer")) || [];
+      const row = JSON.parse(localStorage.getItem("customer") || "[]");
       setRows(row);
     }, []);
 
