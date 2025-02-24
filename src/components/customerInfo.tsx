@@ -33,7 +33,6 @@ const submit=(data:ICustomer)=>{
 
     setLoading(true)
 
-    localStorage.setItem("customer", JSON.stringify({...data, metadata:""}));
   
     notify();
     
@@ -56,7 +55,7 @@ const submit=(data:ICustomer)=>{
         Enter your Information
         </p>
 
-        <form onSubmit={handleSubmit(submit)}>
+        <form>
           <div className="flex flex-col gap-6">
           <div>
               <InputBoxComp

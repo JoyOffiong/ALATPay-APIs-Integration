@@ -21,39 +21,12 @@ interface T {
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [openCustomerModal, setOpenCustomerModal] = useState<boolean>(false);
-  const [refetch, setRefetch] = useState<boolean>(false);
-  const [rows, setRows] = useState<Array<T>>([]);
   const [update, setUpdate] = useState<boolean>(false);
   const [tasks, setTasks] = useState<T>();
   const [show, setShow] = useState<boolean>(true)
 
 
   const [openModal,  setOpenModal] = useState<boolean>(false)
-
-  const handleCloseModal=()=>{
-      setOpenModal(false)
-    
-    }
-
-  const Tableheadings = [
-    { label: "S/N" },
-    { label: "Task" },
-    { label: "time" },
-    { label: "Status" },
-    { label: "Action" },
-  ];
-
-  useEffect(() => {
-    const info: T[] = JSON.parse(localStorage.getItem("tasks") || "[]");
-    setRows(info);
-    setRefetch(false);
-  }, [refetch]);
-
-  const handleClose = () => {
-    setOpen(false);
-    setUpdate(false);
-    setTasks({});
-  };
   const router = useRouter(); 
   useEffect(() => {
     if (router) {
@@ -73,24 +46,7 @@ function App() {
     }
 
 
-    
-  const fetchItemById = (id: string) => {
-    setUpdate(true)
-    setOpen(true);
-    const item = rows.find((row) => row.id === id);
-    if (item) {
-      setTasks(item);
-    } else {
-      setTasks({});
-    }
-  };
-
-  const deleteItem = (id: string) => {
-    const item = rows.findIndex((row) => row.id === id);
-    rows.splice(item, 1);
-    localStorage.setItem("tasks", JSON.stringify(rows));
-    setRefetch(true);
-  };
+  
 
   return (
 
@@ -140,28 +96,14 @@ function App() {
       </div>
       <div className="w-full">
         <TableComponent
-          Tableheadings={Tableheadings}
-          rows={rows}
-          setRefetch={setRefetch}
-          deleteItem={deleteItem}
-          fetchItemById={fetchItemById}
-        />
+                  />
       </div>
       <div className="items-right flex flex-col space-y-2 text-center">
       <em>To use our pro version </em> 
        <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Fund Wallet Via API</em></button> 
        
       </div>
-      {open && (
-        <AddTasks
-          open={open}
-          update={update}
-          handleClose={handleClose}
-          setRefetch={setRefetch}
-          setTasks={setTasks}
-          tasks={tasks}
-        />
-      )}
+
        {openCustomerModal && (
        <CustomerInfo
        openCustomerModal={openCustomerModal}
