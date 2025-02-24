@@ -103,12 +103,12 @@ localStorage.setItem(
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
 
   return (
-    <div className="mt-32 mx-20">
-      <p className="text-secondary font-semibold mb-10">
+    <div className="mt-32 mx-8 md:mx-20">
+      <p className="text-secondary text-xl md:text-2xl font-semibold mb-10">
         Enter your Information
       </p>
       <form onSubmit={handleSubmit(submit)}>
-        <div className="flex mt-0 flex-col gap-10">
+        <div className="flex mt-0 flex-col gap-8">
             {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
             <div className="w-full">
@@ -244,8 +244,8 @@ localStorage.setItem(
               label="Amount"
             />
           </div>
-          <div className=" mb-20 flex flex-end justify-end">
-            <button className="bg-green-700 text-white py-2 px-4 rounded-lg " type="submit">Pay</button>{" "}
+          <div className=" mb-10 flex flex-end justify-end">
+            <button className="bg-green-700 text-white py-2 px-6 rounded-lg " type="submit">Pay</button>{" "}
           </div>
         </div>
       </form>

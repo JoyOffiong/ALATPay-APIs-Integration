@@ -57,10 +57,10 @@ function App() {
 
       
       <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
-        <div className="space-y-3 text-center md:text-left ">
+        {/* <div className="space-y-3 text-center md:text-left "> 
           <p className="text-secondary text-2xl font-semibold">Wallet Balance:</p>
           <em className="text-secondary  text-2xl font-semibold">N100</em>
-        </div>
+        </div> */}
 
         <div className="w-1/2 justify-center flex ">
           <Image
@@ -73,8 +73,8 @@ function App() {
         </div>
       </div>
 
-      <div className="flex flex-col space-y-4 w-full items-center justify-start md:justify-between md:flex-row ">
-        <p className="text-2xl font-semibold text-secondary">Transaction History</p>
+      <div className="flex flex-col space-y-4 w-full items-center justify-center md:justify-between md:flex-row ">
+        <p className="text-2xl font-semibold text-secondary md:text-left text-center">Ijesha Community Development </p>
 
 <div className=" flex flex-col md:flex-row gap-4 justify-between">
 
@@ -94,15 +94,14 @@ function App() {
 </div>
         
       </div>
-      <div className="w-full">
+     {/* <div className="w-full">
         <TableComponent
                   />
       </div>
-      <div className="items-right flex flex-col space-y-2 text-center">
-      <em>To use our pro version </em> 
+     <div className="items-right flex flex-col space-y-2 text-center"> 
+       <em>To use our pro version </em> 
        <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Fund Wallet Via API</em></button> 
-       
-      </div>
+     </div> */}
 
        {openCustomerModal && (
        <CustomerInfo

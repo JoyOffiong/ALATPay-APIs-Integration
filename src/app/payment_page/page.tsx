@@ -43,8 +43,8 @@ function PaymentPage() {
     switch(current){
       case "card":
         return <PayWithCard />;
-      case "bankTransfer":
-        return <PaywithBankTransfer VA_Response={VA_Response} />;
+     // case "bankTransfer":
+      //  return <PaywithBankTransfer VA_Response={VA_Response} />;
       case "bankDetails":
         return <PayWithBankDetails/>;
       case "phoneNumber":
