@@ -3,7 +3,7 @@ import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
 
 type props= {
-  loading: boolean,
+  loading?: boolean,
   text?: string,
   onClick?:()=>void
 }

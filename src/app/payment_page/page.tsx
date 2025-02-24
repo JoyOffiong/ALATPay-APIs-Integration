@@ -110,7 +110,7 @@ function PaymentPage() {
              
                   <div   className={`p-2 text-left text-xs flex items-center gap-2 font-medium border-2 transition-all duration-300 cursor-pointer ${
                     current === "phoneNumber" ? "bg-slate-300 border-[#000]" : "border-[#6e6e6e]"
-                  } hover:bg-slate-300 rounded-md`}>
+                  } hover:bg-slate-300 rounded-md`} onClick={()=>setCurrent("phoneNumber")}> 
                   <Smartphone color={`${current === "phoneNumber" ? "#000000":"#6e6e6e"}`} />  Pay with Phone Number
                   </div>
               </div> 

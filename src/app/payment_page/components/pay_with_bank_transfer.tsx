@@ -48,6 +48,7 @@ function PaywithBankTransfer({ VA_Response }: Props) {
           .then((res: any) => {
             setLoading(false);
             if (res.message === "Success") {
+              setPendingMode(false)
               setSuccessScreen(true);
             }
           })
@@ -122,7 +123,7 @@ function PaywithBankTransfer({ VA_Response }: Props) {
           </div>
         )}
       </div>
-      {successScreen && (
+      {!pendingMode && successScreen  && (
         <div className="space-y-4">
           <p className="text-lg font-bold">Transaction Successful</p>
           <Image src={verify} alt="verify" width={100} height={100} />

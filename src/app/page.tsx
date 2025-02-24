@@ -5,11 +5,12 @@ import Header from "@/components/header";
 import TableComponent from "@/components/tableComponent";
 import { Button } from "@mui/material";
 import Image from "next/image";
-import toDo from "../images/to-do.avif";
+import wallet from "../images/wallet.jpg";
 import React, { useState, useEffect } from "react";
 import CustomerInfo from "@/components/customerInfo";
 import { useRouter } from "next/navigation";
-import UseALATPay from "./services/useALATPay";
+import FeeWaiver from "./models/FeeWaiver";
+import Link from "next/link";
 
 interface T {
   id: string;
@@ -24,6 +25,8 @@ function App() {
   const [rows, setRows] = useState<Array<T>>([]);
   const [update, setUpdate] = useState<boolean>(false);
   const [tasks, setTasks] = useState<T>();
+  const [show, setShow] = useState<boolean>(true)
+
 
   const [openModal,  setOpenModal] = useState<boolean>(false)
 
@@ -90,18 +93,22 @@ function App() {
   };
 
   return (
+
+    <div>
+
     <div className="flex min-h-screen gap-4 mt-20 gap-y-8 p-4 flex-col items-center w-full">
       <Header />
 
       
       <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
-        <div>
-          <p className="text-secondary text-4xl font-semibold">My Tasks</p>
+        <div className="space-y-3 text-center md:text-left ">
+          <p className="text-secondary text-2xl font-semibold">Wallet Balance:</p>
+          <em className="text-secondary  text-2xl font-semibold">N100</em>
         </div>
 
         <div className="w-1/2 justify-center flex ">
           <Image
-            src={toDo}
+            src={wallet}
             alt="tasks image"
             height={250}
             width={250}
@@ -110,20 +117,26 @@ function App() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full items-center justify-start md:justify-between md:flex-row ">
-        <p className="text-2xl font-semibold text-secondary">Task for today</p>
+      <div className="flex flex-col space-y-4 w-full items-center justify-start md:justify-between md:flex-row ">
+        <p className="text-2xl font-semibold text-secondary">Transaction History</p>
 
-        <Button
+<div className=" flex flex-col md:flex-row gap-4 justify-between">
+
+  <div>
+    <Link href="../customer_details">
+  <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
-          onClick={() => setOpen(true)}
-        >
-          Add Tasks
+         // onClick={() => setOpenModal(true)}
+        > 
+        Register Here
         </Button>
-        <Button
-          sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
-          onClick={() => setOpenModal(true)}
-        > Fund Wallet
-        </Button>
+        </Link>
+
+  </div>
+
+       
+</div>
+        
       </div>
       <div className="w-full">
         <TableComponent
@@ -136,7 +149,7 @@ function App() {
       </div>
       <div className="items-right flex flex-col space-y-2 text-center">
       <em>To use our pro version </em> 
-       <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Pay N100</em></button> 
+       <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Fund Wallet Via API</em></button> 
        
       </div>
       {open && (
@@ -156,15 +169,10 @@ function App() {
        />
      )}
 
-     {openModal &&(
-          < UseALATPay
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}
-          />
-     )}
-    </div>
+         </div>
 
-    
+        </div>
+
   );
 }
 

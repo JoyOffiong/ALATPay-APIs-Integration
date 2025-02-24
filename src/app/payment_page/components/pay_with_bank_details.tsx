@@ -12,12 +12,13 @@ import { useRouter } from 'next/navigation';
 
 function PayWithBankDetails() {
 
-   const { control, handleSubmit } = useForm<PayWithBankDetailsData>({
+   const { control, handleSubmit, reset } = useForm<PayWithBankDetailsData>({
       mode: "onChange"
         });
 const [loading, setLoading] = useState<boolean>(false)
 const [otpScreen, setOtpScreen] = useState<boolean>(false)
   const [successScreen, setSuccessScreen] = useState<boolean>(false);
+  const [transId, setTransId] = useState<string>("")
 
   const router = useRouter(); 
   useEffect(() => {
@@ -46,10 +47,12 @@ const onsubmit=(data:PayWithBankDetailsData)=>{
                     amount: 100,
           }
   )
-  .then((res)=>{
+  .then((res:any)=>{
     console.log(res)
     setLoading(false)
     setOtpScreen(true)
+    setTransId(res.transactionId)
+    reset({})
   })
   .catch((err:any)=>{
     setLoading(false)
@@ -59,10 +62,11 @@ const onsubmit=(data:PayWithBankDetailsData)=>{
 
 const submitOTP=(data:PayWithBankDetailsData)=>{
   setLoading(true)
-  BankDetailsAPI.validateOTP(data)
+  BankDetailsAPI.validateOTP({...data, transactionId:transId})
   .then((res:any)=>{
     setLoading(false)
-    if(res.message){
+    if(res.status === 201){
+      setOtpScreen(false)
       setSuccessScreen(true)
     }
   })
@@ -72,10 +76,10 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
 }
   return (
     <div>
-    <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
-      { !otpScreen ? (
+    <div className="shadow-lg p-8 md:p-14 space-y-2 w-full bg-white ">
+      { !otpScreen && !successScreen ? (
          <div>
-         <p className=" font-medium text-xl">
+         <p className=" font-medium text-lg md:text-xl">
           Enter your Wema Bank Account Number
          </p>
         
@@ -136,7 +140,7 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
     </div>
     
     <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
-    {successScreen && (
+    {!otpScreen && successScreen && (
         <div className="space-y-4">
           <p className="text-lg font-bold">Transaction Successful</p>
           <Image src={verify} alt="verify" width={100} height={100} />

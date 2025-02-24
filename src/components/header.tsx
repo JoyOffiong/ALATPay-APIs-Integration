@@ -20,11 +20,11 @@ export default function Header() {
       <div className="flex flex-row items-center w-full justify-between ">
         <div className=" flex items-center">
           <Image src={toDo} alt="to-do-list" width={50} height={50} />
-          <em >MyTodo</em>
+          <em >IDF</em>
         </div>
         
        
-      </div>
+      </div>  
     </div>
   );
 }

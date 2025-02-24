@@ -11,6 +11,8 @@ import { PayWithCardFormData } from "@/app/models/cardModel";
 import style from "@/components/style";
 import { useRouter } from "next/router";
 import LoadingButton from "@/components/loadingbutton";
+import axios from "axios";
+import { headers } from "next/headers";
 
 
 function PayWithCard() {
@@ -21,6 +23,8 @@ function PayWithCard() {
 const [redirect, setRedirect] = useState<string>("")
 const [loading, setLoading] = useState<boolean>(false)
 const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
+const [transId, setTransId] = useState<string>("")
+const [orderId, setOrderId] = useState<string>("")
 
   const { control, handleSubmit } = useForm<PayWithCardFormData>({
     mode: "onChange"
@@ -70,8 +74,25 @@ const [showOTPModal, setShowOTPModal] = useState<boolean>(false)
       }).then((response:any) => {
         setLoading(false)
         setRedirect(response.data.data.redirectHtml)
-       setShowOTPModal(true)
+        setShowOTPModal(true)
+        setTransId(response.data.data.transactionId)
+        setOrderId(response.data.data.orderId)
        
+          setTimeout(() => {
+            try {
+              console.log("logout")
+              axios.post("https://apibox.alatpay.ng/alatpay-external-mpgs/api/v1/paymentCard/mc/authenticate/callback", {transId, orderId}).then((res)=>{
+                console.log(res)
+                if(res.status === 200){
+                  window.location.href = "./";
+                }
+              })
+            } catch (error) {
+              console.log(error)
+            }
+            
+          }, 50000);
+
       })
       .catch((error:any) => {
         setLoading(false)
@@ -82,8 +103,7 @@ setLoading(false)
     });
 
     
-
-      }
+     }
 
 
   return (

@@ -14,7 +14,7 @@ const sendOTP =(data:PayWithBankDetailsData)=>{
                     }
             }
         ) .then((res)=>{
-                resolve(res);
+                resolve(res.data.data);
             }).catch((error)=>{
                 reject(error)
             })
@@ -24,7 +24,7 @@ const sendOTP =(data:PayWithBankDetailsData)=>{
 
 const validateOTP =(data:PayWithBankDetailsData)=>{
     return new Promise ((resolve, reject)=>{
-        axios.post(`${baseURL}/bank-transfer/api/v1/bankTransfer/virtualAccount`, data,
+        axios.post(`${baseURL}/alatpayaccountnumber/api/v1/accountNumber/validateAndPay`, data,
             {
                 headers:{
                     "Content-Type":"application/json",
