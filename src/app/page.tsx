@@ -11,6 +11,7 @@ import CustomerInfo from "@/components/customerInfo";
 import { useRouter } from "next/navigation";
 import FeeWaiver from "./models/FeeWaiver";
 import Link from "next/link";
+import { FetchBalance } from "./services/accountBalanceLookup";
 
 interface T {
   id: string;
@@ -22,13 +23,17 @@ function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [openCustomerModal, setOpenCustomerModal] = useState<boolean>(false);
   const [update, setUpdate] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<T>();
+  const [balance, setBalance] = useState<number>();
   const [show, setShow] = useState<boolean>(true)
 
 
   const [openModal,  setOpenModal] = useState<boolean>(false)
   const router = useRouter(); 
   useEffect(() => {
+
+    FetchBalance().then((res)=>{
+      console.log(res)
+    })
     if (router) {
       console.log("Router is mounted");
     }
@@ -59,7 +64,7 @@ function App() {
       <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
         <div className="space-y-3 text-center md:text-left ">
           <p className="text-secondary text-2xl font-semibold">Wallet Balance:</p>
-          <em className="text-secondary  text-2xl font-semibold">N100</em>
+          <em className="text-secondary  text-2xl font-semibold">{balance}</em>
         </div>
 
         <div className="w-1/2 justify-center flex ">
