@@ -79,8 +79,8 @@ export default function InputBoxComp({
         borderColor: "#FFF5D2", // Light yellow on hover
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderWidth: "4px", // Thicker border on focus
-        borderColor: "#FFF5D2", // Light yellow on focus
+        borderWidth: "4px",
+        borderColor: "#FEE7D6", 
       },
     },
   }}
