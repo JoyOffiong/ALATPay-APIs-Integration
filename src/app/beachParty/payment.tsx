@@ -78,8 +78,8 @@ function Customer_Details() {
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
 
   return (
-    <div className="relative p-4 md:p-8 space-y-5">
-      <div className="-top-4 font-light items-center gap-1 text-xs absolute right-0 flex ">
+    <div className="relative  w-full p-4 md:p-8 space-y-5">
+      <div className="top-4 font-light items-center gap-1 text-xs absolute right-4 flex ">
         <em >Powered by</em> <Image src={alatpaylogo} width={25} height={25} alt="alatpay logo" />
       </div>
       <div className="flex gap-3 flex-row items-center">
@@ -107,7 +107,7 @@ function Customer_Details() {
                 name="firstName"
                 control={control}
                 type="text"
-                label="First Name"
+                placeholder="First Name"
               />
             </div>
             <div className="w-full">
@@ -116,7 +116,7 @@ function Customer_Details() {
                 name="lastName"
                 control={control}
                 type="text"
-                label="Last Name"
+                placeholder="Last Name"
               />
             </div>
           </div>
@@ -127,7 +127,7 @@ function Customer_Details() {
               name="email"
               control={control}
               type="text"
-              label="Email Address"
+              placeholder="Email Address"
             />
           </div>
           <div className="w-full">
@@ -136,7 +136,7 @@ function Customer_Details() {
               name="phone"
               control={control}
               type="text"
-              label="Phone Number"
+              placeholder="Phone Number"
             />
           </div>
 
@@ -145,7 +145,7 @@ function Customer_Details() {
             <SelectBoxComp
               data={formattedPayments}
               name="amount"
-              label="Select Ticket Package"
+              placeholder="Select Ticket Package"
               control={control}
             />
           </div>

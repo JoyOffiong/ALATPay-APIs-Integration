@@ -14,9 +14,11 @@ function App() {
 
   return (
 
-      <div className="flex flex-col-reverse font-inter md:flex-row">
-<Customer_Details/>
-<RHS/>
+      <div className="bg-white flex flex-col-reverse font-inter md:flex-row">
+        <div className="w-full md:w-1/2"><Customer_Details/></div>
+
+<div className="w-full md:w-1/2"><RHS/></div>
+
         </div>
 
   );

@@ -57,7 +57,7 @@ export default function InputBoxComp({
           label={label}
           minRows={minRows}
           multiline={multiline}
-          size={size || "small"}
+          size={size || "medium"}
           type={type}
           ref={ref}
           onKeyUp={onKeyUp}

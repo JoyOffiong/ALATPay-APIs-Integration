@@ -1,11 +1,11 @@
 import React from "react";
 import star from "../../../src/images/star.png";
-import beachBg from "../../../src/images/beach-picture-bg.png";
+import beachBg from "../../../src/images/beach-bg.jpg";
 import Image from "next/image";
 
 function RHS() {
   return (
-    <div className="bg-[#FFF5D2] p-4 md:p-16">
+    <div className="bg-[#FFF5D2] w-full p-4 md:p-16">
       <div className="flex md:flex-col md:gap-5 flex-row">
         <div className="space-y-4 md:w-full w-8/12 ">
           <div className="flex flex-row gap-3">
@@ -28,9 +28,9 @@ function RHS() {
           <Image
             alt="beach-Bg"
             src={beachBg}
-            width={100}
-            height={100}
-            className="md:w-[452px] md:h-[481px] h-[255px] w-[159px] object-contain"
+            width={400}
+            height={400}
+            className="object-contain"
           />
         </div>
       </div>
