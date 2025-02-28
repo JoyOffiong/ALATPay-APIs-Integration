@@ -50,30 +50,42 @@ export default function InputBoxComp({
       control={control}
       render={({ field }) => (
         <TextField
-          {...field}
-          value={(field.value as string) ?? ""}
-          defaultValue={defaultValue}
-          color={color}
-          label={label}
-          minRows={minRows}
-          multiline={multiline}
-          size={size || "medium"}
-          type={type}
-          ref={ref}
-          onKeyUp={onKeyUp}
-          className={className}
-          helperText={helperText}
-          variant={variant || "outlined"}
-          disabled={disabled}
-          placeholder={placeholder}
-          required={required}
-          hiddenLabel={hiddenLabel}
-          fullWidth
-          rows={rows}
-          {...(type === "number" && {
-            inputProps: { min: 0, inputMode: "numeric", pattern: "[0-9]*" },
-          })}
-        />
+  {...field}
+  value={(field.value as string) ?? ""}
+  defaultValue={defaultValue}
+  color={color}
+  label={label}
+  minRows={minRows}
+  multiline={multiline}
+  size={size || "small"}
+  type={type}
+  ref={ref}
+  onKeyUp={onKeyUp}
+  className={className}
+  helperText={helperText}
+  variant={variant || "outlined"}
+  disabled={disabled}
+  placeholder={placeholder}
+  required={required}
+  hiddenLabel={hiddenLabel}
+  fullWidth
+  rows={rows}
+  {...(type === "number" && {
+    inputProps: { min: 0, inputMode: "numeric", pattern: "[0-9]*" },
+  })}
+  sx={{
+    "& .MuiOutlinedInput-root": {
+      "&:hover .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#FFF5D2", // Light yellow on hover
+      },
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderWidth: "4px", // Thicker border on focus
+        borderColor: "#FFF5D2", // Light yellow on focus
+      },
+    },
+  }}
+/>
+
       )}
     />
   );

@@ -6,7 +6,7 @@ import Image from "next/image";
 function RHS() {
   return (
     <div className="bg-[#FFF5D2] w-full p-4 md:p-16">
-      <div className="flex md:flex-col md:gap-5 flex-row">
+      <div className="flex md:flex-col items-center md:gap-5 flex-row">
         <div className="space-y-4 md:w-full w-8/12 ">
           <div className="flex flex-row gap-3">
             <Image src={star} width={24} height={24} alt="beach_party_logo" className="object-contain"/>
@@ -28,8 +28,8 @@ function RHS() {
           <Image
             alt="beach-Bg"
             src={beachBg}
-            width={400}
-            height={400}
+            width={500}
+            height={300}
             className="object-contain"
           />
         </div>

@@ -78,7 +78,7 @@ function Customer_Details() {
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
 
   return (
-    <div className="relative  w-full p-4 md:p-8 space-y-5">
+    <div className="relative  w-full p-8 md:p-12 space-y-5">
       <div className="top-4 font-light items-center gap-1 text-xs absolute right-4 flex ">
         <em >Powered by</em> <Image src={alatpaylogo} width={25} height={25} alt="alatpay logo" />
       </div>
