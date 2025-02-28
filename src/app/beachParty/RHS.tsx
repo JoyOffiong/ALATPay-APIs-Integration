@@ -15,7 +15,7 @@ function RHS() {
             </p>
           </div>
           <div className="space-y-4">
-            <p className="font-semibold md:leading-[50px] text-[20px] md:text-[40px]  text-[#292524]">
+            <p className="font-bold md:leading-[50px] text-[20px] md:text-[40px]  text-[#292524]">
               Women's-Only Sports Festival Atmosphere{" "}
             </p>
             <div className="text-[#57534E] font-normal text-[10px] md:text-base">
