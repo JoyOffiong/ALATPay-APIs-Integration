@@ -84,7 +84,7 @@ function App() {
       
          // onClick={() => setOpenModal(true)}
         > 
-        Register Here
+        Pay Here
         </button>
         </Link>
 

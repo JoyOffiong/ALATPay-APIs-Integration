@@ -38,39 +38,11 @@ function Customer_Details() {
   ]
   const formattedPayments = payments.map(p => ({ value: String(p.value), label: p.label }));
 
+const currency = ["NGN", "USD"]
 
-  const location=[
-    {value:"nigeria", label:"Nigeria"}, {value:"diaspora", label:"Diaspora"}
-  ]
-  const localGovt=[
-{value:"Ilesa East", label:"Ilesa East"}, 
-{value:"Ilesa West", label:"Ilesa West"},
-{value:"Atakumosa West", label:"Atakumosa West"},
-{value:"Atakumosa East", label:"Atakumosa East"},
-{value:"Obokun", label:"Obokun"}, {value:"Oriade", label:"Oriade"}
-  ]
-const title=[
-    {value:"mr", label:"Mr"},
-    {value:"mrs", label:"Mrs"},
-    {value:"Dr", label:"Dr"},
-    {value:"chief", label:"Chief"},
-    {value:"oba", label:"Oba"},
-    {value:"prof", label:"Prof"}
-]
 
   const submit = (formData: any) => {
 
-// Retrieve and parse existing data, ensuring it's always an array
-//const users = JSON.parse(localStorage.getItem("customer") ?? "[]");
-
-// Store updated array by spreading existing data and adding new entry
-// localStorage.setItem(
-//   "customer",
-//   JSON.stringify([
-//     ...(Array.isArray(users) ? users : []), 
-//     { ...formData, metadata: "" }
-//   ])
-// );
 
     const config = {
       apiKey: "2b11fe4f55244516bcf9040f733eeaef",
@@ -114,11 +86,7 @@ const title=[
         <div className="flex mt-0 flex-col gap-8">
             {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
-            <div className="w-full">
-                <label htmlFor="">Title</label>
-                <SelectBoxComp data={title} name="title" control={control} />
-
-            </div>
+           
             <div className="w-full">
                 <label htmlFor="">First Name</label>
               <InputBoxComp
@@ -138,17 +106,8 @@ const title=[
               />
             </div>
           </div>
-          {/* email and phoneNumber */}
-          <div className="flex flex-col md:flex-row gap-8 w-full">
-            <div className="w-full">
-                <label htmlFor="">Other Name</label>
-              <InputBoxComp
-                name="otherName"
-                control={control}
-                type="text"
-                label="Other Name"
-              />
-            </div>
+         
+           
             <div className="w-full">
                 <label htmlFor="">Email Address</label>
               <InputBoxComp
@@ -167,65 +126,25 @@ const title=[
                 label="Phone Number"
               />
             </div>
-          </div>
 
-     {/* LGA, TOWN, WARD */}
-          <div className="flex flex-col md:flex-row gap-8 w-full">
-            <div className="w-full">
-                <label htmlFor="">Local Government</label>
-            <SelectBoxComp data={localGovt} label="Select your LGA" name="localGovernement" control={control} />
-            </div>
-            <div className="w-full">
-                <label htmlFor="">Town</label>
-            <InputBoxComp
-            name="town" control={control} type="text" label="Town"/>
-            </div>
-            <div className="w-full">
-                <label htmlFor="">Ward</label>
-                <InputBoxComp name="ward" control={control} type="text" label="Ward"/>
-            </div>
-            <div>
-
-            </div>
-          </div>
-
-          {/* beneificiary LGA, Location, class of payment */}
-
-          <div className="flex flex-col md:flex-row gap-8 w-full">
-            <div className="w-full">
-            <label htmlFor="">Beneficiary LGA</label>
-            <SelectBoxComp data={localGovt} name="beneficiaryLGA" control={control} label="Select your LGA"/>
-            </div>
-            <div className="w-full">
-                <label htmlFor="">Location</label>
-                <SelectBoxComp data={location} name="location" control={control} />
-            </div>
-            <div className="w-full">
-                <label htmlFor="">Class of Payment made by Donor</label>
-                <SelectBoxComp data={formattedPayments} name="amount" control={control} />
-
-            </div>
-          </div>
 
         
+            <div className="w-full">
+                <label htmlFor="">Ticket Package</label>
+                <SelectBoxComp data={formattedPayments} name="amount" control={control} />
 
-          <div className="hidden">
-            <InputBoxComp
-              name="metaData"
-              control={control}
-              type="text"
-              label="Meta Data"
-            />
-          </div>
+           
+            </div>
+
+        
           <div>
-          <div className="hidden">
-            <InputBoxComp
-              name="currency"
-              control={control}
-              type="text"
-              defaultValue="NGN"
-              label="Currency"
-            />
+            
+          <div className="w-full">
+                <label htmlFor="">Currency</label>
+                <SelectBoxComp data={currency} name="currency" control={control} />
+
+           
+            </div>
           </div>
           
                      </div>
@@ -244,13 +163,12 @@ const title=[
               defaultValue="18eff8dbdb364520a4b7bd6a21db7da7"
               control={control}
               type="text"
-              label="Amount"
+           
             />
           </div>
           <div className=" mb-10 flex flex-end justify-end">
             <button className="bg-green-700 text-white py-2 px-6 rounded-lg " type="submit">Pay</button>{" "}
           </div>
-        </div>
       </form>
     </div>
   );
