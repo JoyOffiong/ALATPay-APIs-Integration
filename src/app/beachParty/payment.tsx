@@ -8,6 +8,9 @@ import { Currency } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { metadata } from "../layout";
+import img from "../../../src/images/beachParty.png";
+import alatpaylogo from "../../../src/images/alatLogo.png";
+import Image from "next/image";
 
 function Customer_Details() {
   const [alatPayInitialized, setAlatPayInitialized] = useState(false);
@@ -30,20 +33,17 @@ function Customer_Details() {
     }
   }, [alatPayInitialized]);
 
-  const payments=[
-   {value:1000, label:"Level 1 - ₦1,000"},
-   {value:2500 ,label:"Level 2 - ₦2,500"}, 
-   {value:5000, label:"Level 3 - ₦5,000"}, {value:10000, label:"Level 4 - ₦10,000"}
-
-  ]
-  const formattedPayments = payments.map(p => ({ value: String(p.value), label: p.label }));
-
-const currency = ["NGN", "USD"]
+  const payments = [
+    { value: 15000, label: "Single - ₦1,000" },
+    { value: 70000, label: "Group of 5 - ₦2,500" },
+  ];
+  const formattedPayments = payments.map((p) => ({
+    value: String(p.value),
+    label: p.label,
+  }));
 
 
   const submit = (formData: any) => {
-
-
     const config = {
       apiKey: "2b11fe4f55244516bcf9040f733eeaef",
       businessId: "95eaac56-5627-45a0-285b-08dcfa9cf102",
@@ -63,8 +63,8 @@ const currency = ["NGN", "USD"]
     };
 
     try {
-        const newPopup = (window as any).Alatpay.setup(config);
-        if (newPopup) {
+      const newPopup = (window as any).Alatpay.setup(config);
+      if (newPopup) {
         console.log("Popup initialized:", newPopup);
         newPopup.show();
       } else {
@@ -78,17 +78,31 @@ const currency = ["NGN", "USD"]
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
 
   return (
-    <div className="mt-32 mx-8 md:mx-20">
-      <p className="text-secondary text-xl md:text-2xl font-semibold mb-10">
-        Enter your Information
-      </p>
+    <div className="relative m-8 md:p-8 space-y-5">
+      <div className="-top-4 font-light items-center gap-1 text-xs absolute right-0 flex ">
+        <em >Powered by</em> <Image src={alatpaylogo} width={25} height={25} alt="alatpay logo" />
+      </div>
+      <div className="flex gap-3 flex-row items-center">
+        <Image src={img} width={24} height={24} alt="beach_party_logo" />
+        <p className="md:text-base text-sm font-semibold bg-gradient-to-r from-[#022876] to-[#EFAB04] bg-clip-text text-transparent">
+          Beach_terhousesport Festival
+        </p>
+      </div>
+      <div className="space-y-4">
+        <p className="font-semibold text-xl md:text-2xl text-[#292524]">
+          Ticket Payment Form
+        </p>
+        <p className="text-[#57534E] text-sm md:text-base font-normal">
+          Get ready to connect, compete, and have fun in a vibrant, empowering
+          atmosphere!
+        </p>
+      </div>
       <form onSubmit={handleSubmit(submit)}>
-        <div className="flex mt-0 flex-col gap-8">
-            {/* Title and name */}
+        <div className="flex mt-8 flex-col gap-4">
+          {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
-           
             <div className="w-full">
-                <label htmlFor="">First Name</label>
+              <label htmlFor="" className="text-[#57534E] font-normal text-xs">First Name</label>
               <InputBoxComp
                 name="firstName"
                 control={control}
@@ -97,7 +111,7 @@ const currency = ["NGN", "USD"]
               />
             </div>
             <div className="w-full">
-                <label htmlFor="">Last Name</label>
+              <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Last Name</label>
               <InputBoxComp
                 name="lastName"
                 control={control}
@@ -106,69 +120,68 @@ const currency = ["NGN", "USD"]
               />
             </div>
           </div>
-         
-           
-            <div className="w-full">
-                <label htmlFor="">Email Address</label>
-              <InputBoxComp
-                name="email"
-                control={control}
-                type="text"
-                label="Email Address"
-              />
-            </div>
-            <div className="w-full">
-                <label htmlFor="">Phone Number</label>
-              <InputBoxComp
-                name="phone"
-                control={control}
-                type="text"
-                label="Phone Number"
-              />
-            </div>
 
-
-        
-            <div className="w-full">
-                <label htmlFor="">Ticket Package</label>
-                <SelectBoxComp data={formattedPayments} name="amount" control={control} />
-
-           
-            </div>
-
-        
-          <div>
-            
           <div className="w-full">
-                <label htmlFor="">Currency</label>
-                <SelectBoxComp data={currency} name="currency" control={control} />
+            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Email Address</label>
+            <InputBoxComp
+              name="email"
+              control={control}
+              type="text"
+              label="Email Address"
+            />
+          </div>
+          <div className="w-full">
+            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Phone Number</label>
+            <InputBoxComp
+              name="phone"
+              control={control}
+              type="text"
+              label="Phone Number"
+            />
+          </div>
 
-           
-            </div>
-          </div>
-          
-                     </div>
-          <div className="hidden">
-            <InputBoxComp
-              name="businessId"
-              defaultValue="a9e640c0-4ce5-4291-27ca-08dcd31fac98"
+          <div className="w-full">
+            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Ticket Package</label>
+            <SelectBoxComp
+              data={formattedPayments}
+              name="amount"
+              label="Select Ticket Package"
               control={control}
-              type="text"
-              label="Amount"
             />
           </div>
+
           <div className="hidden">
-            <InputBoxComp
-              name="apiKey"
-              defaultValue="18eff8dbdb364520a4b7bd6a21db7da7"
-              control={control}
+            <label htmlFor="">Currency</label>
+            <input
+              name="currency"
               type="text"
-           
+              defaultValue="NGN"
             />
           </div>
-          <div className=" mb-10 flex flex-end justify-end">
-            <button className="bg-green-700 text-white py-2 px-6 rounded-lg " type="submit">Pay</button>{" "}
-          </div>
+        </div>
+        <div className="hidden">
+          <input
+            name="businessId"
+            defaultValue="a9e640c0-4ce5-4291-27ca-08dcd31fac98"
+            type="text"
+          />
+        </div>
+        <div className="hidden">
+          <input
+            name="apiKey"
+            defaultValue="18eff8dbdb364520a4b7bd6a21db7da7"
+            type="text"
+          />
+        </div>
+        <div className="my-10 flex justify-end">
+          <button
+            className="w-[203px] h-[48px] min-w-32 py-2 px-6 text-base font-medium rounded-lg text-white 
+               bg-gradient-to-r from-[#EFAB04] to-[#022876] hover:opacity-90 transition-opacity"
+            type="submit"
+          >
+            Proceed to Payment
+          </button>
+        </div>
       </form>
     </div>
   );

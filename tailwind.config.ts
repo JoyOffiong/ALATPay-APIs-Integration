@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        schoolbell: ["Schoolbell", "cursive"],
+        inter: ["Inter", "sans-serif"]
+      },
       backgroundImage: {
         'flowery': "url('/models/flowerybg.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
