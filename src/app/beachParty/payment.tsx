@@ -46,8 +46,8 @@ function Customer_Details() {
 
   const submit = (formData: any) => {
     const config = {
-      apiKey: "2b11fe4f55244516bcf9040f733eeaef",
-      businessId: "95eaac56-5627-45a0-285b-08dcfa9cf102",
+      apiKey: "af578298aec04578beb7f9b70828ad70",
+businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
       email: formData.email,
       phone: formData.phone,
       firstName: formData.firstName,
@@ -160,20 +160,7 @@ function Customer_Details() {
             />
           </div>
         </div>
-        <div className="hidden">
-          <input
-            name="businessId"
-            defaultValue="1ada836e-ba62-4146-db8b-08dd4ac0a01c"
-            type="text"
-          />
-        </div>
-        <div className="hidden">
-          <input
-            name="apiKey"
-            defaultValue="af578298aec04578beb7f9b70828ad70"
-            type="text"
-          />
-        </div>
+       
         <div className="my-16 flex justify-end">
           <button
             className="w-[203px] h-[48px] min-w-32 py-2 px-6 text-base font-medium rounded-lg text-white 
