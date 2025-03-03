@@ -35,8 +35,7 @@ function Customer_Details() {
   }, [alatPayInitialized]);
 
   const payments = [
-    { value: 15000, label: "Single Ticket - ₦15,000" },
-    { value: 70000, label: "Group of 5 - ₦70,000" },
+    { value: 13000, label: "Single Ticket - ₦13,000" },
   ];
 
   const colors =[
@@ -81,11 +80,11 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
       console.error("Error initializing AlatPay:", error);
     }
 
-    // fetch("/", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   body: new URLSearchParams(formData).toString()
-    // })
+     fetch("/", {
+       method: "POST",
+       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+       body: new URLSearchParams(formData).toString()
+     })
 
   };
 
