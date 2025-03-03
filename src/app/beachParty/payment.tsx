@@ -11,6 +11,7 @@ import { metadata } from "../layout";
 import img from "../../../src/images/beachParty.png";
 import alatpaylogo from "../../../src/images/alatLogo.png";
 import Image from "next/image";
+import { encode } from "punycode";
 
 function Customer_Details() {
   const [alatPayInitialized, setAlatPayInitialized] = useState(false);
@@ -37,6 +38,12 @@ function Customer_Details() {
     { value: 15000, label: "Single - ₦15,000" },
     { value: 70000, label: "Group of 5 - ₦70,000" },
   ];
+
+  const colors =[
+    {value:"Blue house", label:"Blue House"},
+    {value:"Red house", label:"Red House"}
+  ]
+
   const formattedPayments = payments.map((p) => ({
     value: String(p.value),
     label: p.label,
@@ -73,6 +80,13 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
     } catch (error) {
       console.error("Error initializing AlatPay:", error);
     }
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+
   };
 
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
@@ -97,7 +111,7 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           atmosphere!
         </p>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
+      <form name="contact" onSubmit={handleSubmit(submit)} data-netlify= "true">
         <div className="flex mt-8 flex-col gap-6">
           {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
@@ -148,6 +162,11 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
               placeholder="Select Ticket Package"
               control={control}
             />
+          </div>
+
+          <div>
+          <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Ticket Package</label>
+              <SelectBoxComp data={colors} name="colors" placeholder="Select your house" control={control}/>
           </div>
 
           <div className="hidden">
