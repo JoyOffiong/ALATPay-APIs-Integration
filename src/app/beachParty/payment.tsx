@@ -6,7 +6,6 @@ import style from "@/components/style";
 import { Modal, Box } from "@mui/material";
 import { Currency } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { metadata } from "../layout";
 import img from "../../../src/images/beachParty.png";
 import alatpaylogo from "../../../src/images/alatLogo.png";
@@ -16,6 +15,10 @@ import { register } from "module";
 
 function Customer_Details() {
   const [alatPayInitialized, setAlatPayInitialized] = useState(false);
+  const [firstName, setFirstName] = useState<string>("")
+  const [lastName, setLastName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
+  const [amount, setAmount] = useState<string>("")
 
   useEffect(() => {
     if (!alatPayInitialized) {
@@ -44,25 +47,25 @@ function Customer_Details() {
     {value:"Red house", label:"Red House"}
   ]
 
-  const formattedPayments = payments.map((p) => ({
-    value: String(p.value),
-    label: p.label,
-  }));
-
-  const { register, handleSubmit } = useForm();
+ 
 
 
-  const submit = (formData: any) => {
+
+  const submit = (e: any) => {
+
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
     const config = {
       apiKey: "af578298aec04578beb7f9b70828ad70",
 businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
-      email: formData.email,
-      phone: formData.phone,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      amount: +formData.amount,
-      currency: formData.currency,
-      metadata: formData.metaData || "",
+      email: data?.email,
+      phone: data.phone,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      amount: +data.amount,
+      currency: data.currency,
+      metadata: data.metaData || "",
       onTransaction: function (response: any) {
         console.log("Transaction successful: ", response);
       },
@@ -86,7 +89,7 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ "form-name": "contact", ...formData }).toString(),
+      body: new URLSearchParams({ "form-name": "contact", ...data }).toString(),
     });
   };
 
@@ -104,62 +107,57 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           Beach_terhousesport Festival
         </p>
       </div>
-      <form name="contact" onSubmit={handleSubmit(submit)} data-netlify="true">
+      <form name="contact" onSubmit={submit} data-netlify="true">
         <div className="flex flex-col gap-6 mt-8">
           <div className="flex flex-col md:flex-row gap-8 w-full">
             <div className="w-full">
               <label className="text-[#57534E] font-normal text-xs">First Name</label>
-              <div className="border-1 border p-3 rounded-xl ">
-
-              <input {...register("firstName")} type="text" placeholder="First Name" required />
+              <div className="border border-gray-300 p-3 rounded-xl">
+                <input name="firstName" type="text" placeholder="First Name" required className="w-full focus:outline-none" />
               </div>
-              </div>
+            </div>
             <div className="w-full">
               <label className="text-[#57534E] font-normal text-xs">Last Name</label>
-              <div className="border-1 border p-3 rounded-xl ">
-
-              <input {...register("lastName")} type="text" placeholder="Last Name" required />
-           
+              <div className="border border-gray-300 p-3 rounded-xl">
+                <input name="lastName" type="text" placeholder="Last Name" required className="w-full focus:outline-none" />
               </div>
-              </div>
+            </div>
           </div>
           <div className="w-full">
             <label className="text-[#57534E] font-normal text-xs">Email Address</label>
-            <div className="border-1 border p-3 rounded-xl ">
-
-            <input {...register("email")} type="email" placeholder="Email Address" required />
+            <div className="border border-gray-300 p-3 rounded-xl">
+              <input name="email" type="email" placeholder="Email Address" required className="w-full focus:outline-none" />
             </div>
-            </div>
-          <div className="w-full flex space-y-2 flex-col">
-            <label className="text-[#57534E] font-normal text-xs">Phone Number</label>
-            <div className="border-1 border p-3 rounded-xl ">
-            <input  {...register("phone")} type="tel" placeholder="Phone Number" required />
           </div>
-
+          <div className="w-full">
+            <label className="text-[#57534E] font-normal text-xs">Phone Number</label>
+            <div className="border border-gray-300 p-3 rounded-xl">
+              <input name="phone" type="tel" placeholder="Phone Number" required className="w-full focus:outline-none" />
             </div>
+          </div>
           <div className="w-full">
             <label className="text-[#57534E] font-normal text-xs">Ticket Package</label>
-            <div className="border-1 border p-3 rounded-xl ">
-
-            <select {...register("amount")} required className="w-full">
-              {payments.map((p) => (
-                <option key={p.value} value={p.value}>{p.label}</option>
-              ))}
-            </select>
+            <div className="border border-gray-300 p-3 rounded-xl">
+              <select name="amount" className="w-full focus:outline-none">
+                {payments.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
-            </div>
+          </div>
           <div className="w-full">
             <label className="text-[#57534E] font-normal text-xs">Color</label>
-            <div className="border-1 border p-3 rounded-xl ">
-
-            <select {...register("colors")} required>
-              {colors.map((c) => (
-                <option key={c.value} value={c.value}>{c.label}</option>
-              ))}
-            </select>
+            <div className="border border-gray-300 p-3 rounded-xl">
+              <select name="color" required className="w-full focus:outline-none">
+                {colors.map((c) => (
+                  <option key={c.value} value={c.value}>{c.label}</option>
+                ))}
+              </select>
             </div>
-            </div>
-          <input type="hidden" {...register("currency")} value="NGN" />
+          </div>
+          <input type="hidden" name="currency" value="NGN" />
         </div>
         <div className="my-16 flex justify-end">
           <button className="w-[203px] h-[48px] min-w-32 py-2 px-6 text-base font-medium rounded-lg text-white bg-gradient-to-r from-[#EFAB04] to-[#022876] hover:opacity-90 transition-opacity" type="submit">
