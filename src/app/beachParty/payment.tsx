@@ -34,6 +34,7 @@ function Customer_Details() {
   }, [alatPayInitialized]);
 
   const payments = [
+    { value: 13000, label: "Basic - ₦13,000" },
     { value: 15000, label: "Single - ₦15,000" },
     { value: 70000, label: "Group of 5 - ₦70,000" },
   ];
