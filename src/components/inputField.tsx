@@ -76,11 +76,11 @@ export default function InputBoxComp({
   sx={{
     "& .MuiOutlinedInput-root": {
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#FFF5D2", // Light yellow on hover
+        borderColor: "#FFF5D2", 
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
         borderWidth: "4px",
-        borderColor: "#FEE7D6", 
+        borderColor: "#fee7d6", 
       },
     },
   }}

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 function RHS() {
   return (
-    <div className="bg-[#FFF5D2] w-full p-4 md:p-16">
+    <div className="bg-[#FFF5D2] w-full p-4 md:px-16 pt-16 ">
       <div className="flex md:flex-col items-center md:gap-5 flex-row">
         <div className="space-y-4 md:w-full w-8/12 ">
           <div className="flex flex-row gap-3">

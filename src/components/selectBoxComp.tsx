@@ -42,6 +42,17 @@ export default function SelectBoxComp({
             select
             defaultValue="all"
             placeholder={placeholder}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#FFF5D2",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderWidth: "4px",
+                  borderColor: "#fee7d6", 
+                },
+              },
+            }}
             value={(field.value as string) ?? ""}
             onChange={(e) => {
               field.onChange(e);

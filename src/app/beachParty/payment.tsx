@@ -98,7 +98,7 @@ function Customer_Details() {
         </p>
       </div>
       <form onSubmit={handleSubmit(submit)}>
-        <div className="flex mt-8 flex-col gap-4">
+        <div className="flex mt-8 flex-col gap-6">
           {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
             <div className="w-full">
@@ -162,18 +162,18 @@ function Customer_Details() {
         <div className="hidden">
           <input
             name="businessId"
-            defaultValue="a9e640c0-4ce5-4291-27ca-08dcd31fac98"
+            defaultValue="1ada836e-ba62-4146-db8b-08dd4ac0a01c"
             type="text"
           />
         </div>
         <div className="hidden">
           <input
             name="apiKey"
-            defaultValue="18eff8dbdb364520a4b7bd6a21db7da7"
+            defaultValue="af578298aec04578beb7f9b70828ad70"
             type="text"
           />
         </div>
-        <div className="my-10 flex justify-end">
+        <div className="my-16 flex justify-end">
           <button
             className="w-[203px] h-[48px] min-w-32 py-2 px-6 text-base font-medium rounded-lg text-white 
                bg-gradient-to-r from-[#EFAB04] to-[#022876] hover:opacity-90 transition-opacity"
