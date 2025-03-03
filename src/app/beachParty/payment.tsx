@@ -1,17 +1,9 @@
 "use client";
 
-import InputBoxComp from "@/components/inputField";
-import SelectBoxComp from "@/components/selectBoxComp";
-import style from "@/components/style";
-import { Modal, Box } from "@mui/material";
-import { Currency } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { metadata } from "../layout";
 import img from "../../../src/images/beachParty.png";
 import alatpaylogo from "../../../src/images/alatLogo.png";
 import Image from "next/image";
-import { encode } from "punycode";
-import { register } from "module";
 
 function Customer_Details() {
   const [alatPayInitialized, setAlatPayInitialized] = useState(false);
@@ -107,7 +99,7 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           Beach_terhousesport Festival
         </p>
       </div>
-      <form name="contact" onSubmit={submit} data-netlify="true">
+      <form name="contact" onSubmit={submit} method="POST" data-netlify="true">
         <div className="flex flex-col gap-6 mt-8">
           <div className="flex flex-col md:flex-row gap-8 w-full">
             <div className="w-full">
