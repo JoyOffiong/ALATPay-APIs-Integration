@@ -164,7 +164,7 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
             />
           </div>
 
-          <div>
+          <div className="w-full">
           <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Color</label>
               <SelectBoxComp data={colors} name="colors" placeholder="Select your house" control={control}/>
           </div>
