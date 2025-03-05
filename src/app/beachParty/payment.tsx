@@ -66,8 +66,8 @@ function Customer_Details() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
 
     })
-      .then(() => alert("Form submitted successfully!"))
-      .catch((error) => console.error("Error submitting form:", error));
+      .then((res) =>  res )
+      .catch((error) => error);
 
     const config = {
       apiKey: "af578298aec04578beb7f9b70828ad70",
