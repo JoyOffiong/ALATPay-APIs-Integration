@@ -40,8 +40,9 @@ function Customer_Details() {
   ];
 
   const colors = [
-    { value: "Blue house", label: "Blue House" },
-    { value: "Red house", label: "Red House" },
+    { value: "Purple house", label: "Purple House" },
+    { value: "Green house", label: "Green House" },
+    { value: "Pink house", label: "Pink House" },
   ];
 
   const formattedPayments = payments.map((p) => ({
@@ -52,12 +53,12 @@ function Customer_Details() {
   const submit = (formData: any) => {
  
     const formDatas = new URLSearchParams();
-    formDatas.append("entry.1311444054", formData.firstName); // Replace with actual ID
-    formDatas.append("entry.423445294", formData.lastName);  // Replace with actual ID
-    formDatas.append("entry.145421949", formData.email);     // Replace with actual ID
-    formDatas.append("entry.1751212579", formData.phone);     // Replace with actual ID
-    formDatas.append("entry.410223908", formData.amount);     // Replace with actual ID
-    formDatas.append("entry.2023934774", formData.colors);     // Replace with actual ID
+    formDatas.append("entry.1311444054", formData.firstName); 
+    formDatas.append("entry.423445294", formData.lastName);  
+    formDatas.append("entry.145421949", formData.email);     
+    formDatas.append("entry.1751212579", formData.phone);     
+    formDatas.append("entry.410223908", formData.amount);     
+    formDatas.append("entry.2023934774", formData.colors);     
 
     fetch("https://docs.google.com/forms/d/e/1FAIpQLSdpmc5C0atledFL5jI5Td8S5YyJKGmi5lABH7rWvd0vMLLqng/formResponse", {
       method: "POST",
