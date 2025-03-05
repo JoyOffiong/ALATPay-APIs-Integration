@@ -32,7 +32,7 @@ export default function InputBoxComp({
   required,
   placeholder,
   onKeyUp,
-  helperText,
+    helperText,
   ref,
   rows,
   disabled = false,

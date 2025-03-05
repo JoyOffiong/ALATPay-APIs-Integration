@@ -76,7 +76,7 @@ function Customer_Details() {
       phone: formData.phone,
       firstName: formData.firstName,
       lastName: formData.lastName,
-      amount: +formData.amount,
+      amount: 13000,
       currency: formData.currency,
       metadata: formData.metaData || "",
       onTransaction: function (response: any) {
@@ -180,11 +180,13 @@ function Customer_Details() {
             <label htmlFor="" className="text-[#57534E] font-normal text-xs">
               Ticket Package
             </label>
-            <SelectBoxComp
-              data={formattedPayments}
+            <InputBoxComp
               name="amount"
-              placeholder="Select Ticket Package"
               control={control}
+              type="text"
+              placeholder=" ₦13,000"
+              className=" !text-black bg-white cursor-not-allowed"
+ disabled
             />
           </div>
 
