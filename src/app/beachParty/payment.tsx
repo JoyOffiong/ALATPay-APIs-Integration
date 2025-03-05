@@ -39,21 +39,39 @@ function Customer_Details() {
     { value: 70000, label: "Group of 5 - ₦70,000" },
   ];
 
-  const colors =[
-    {value:"Blue house", label:"Blue House"},
-    {value:"Red house", label:"Red House"}
-  ]
+  const colors = [
+    { value: "Blue house", label: "Blue House" },
+    { value: "Red house", label: "Red House" },
+  ];
 
   const formattedPayments = payments.map((p) => ({
     value: String(p.value),
     label: p.label,
   }));
 
-
   const submit = (formData: any) => {
+ 
+    const formDatas = new URLSearchParams();
+    formDatas.append("entry.1311444054", formData.firstName); // Replace with actual ID
+    formDatas.append("entry.423445294", formData.lastName);  // Replace with actual ID
+    formDatas.append("entry.145421949", formData.email);     // Replace with actual ID
+    formDatas.append("entry.1751212579", formData.phone);     // Replace with actual ID
+    formDatas.append("entry.410223908", formData.amount);     // Replace with actual ID
+    formDatas.append("entry.2023934774", formData.colors);     // Replace with actual ID
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdpmc5C0atledFL5jI5Td8S5YyJKGmi5lABH7rWvd0vMLLqng/formResponse", {
+      method: "POST",
+      body: formDatas,
+      mode: "no-cors", // Required for Google Forms
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+
+    })
+      .then(() => alert("Form submitted successfully!"))
+      .catch((error) => console.error("Error submitting form:", error));
+
     const config = {
       apiKey: "af578298aec04578beb7f9b70828ad70",
-businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
+      businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
       email: formData.email,
       phone: formData.phone,
       firstName: formData.firstName,
@@ -86,7 +104,6 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
     //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
     //   body: new URLSearchParams(formData).toString()
     // })
-
   };
 
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
@@ -94,7 +111,8 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
   return (
     <div className="relative  w-full p-8 md:p-12 space-y-5">
       <div className="top-4 font-light items-center gap-1 text-xs absolute right-4 flex ">
-        <em >Powered by</em> <Image src={alatpaylogo} width={25} height={25} alt="alatpay logo" />
+        <em>Powered by</em>{" "}
+        <Image src={alatpaylogo} width={25} height={25} alt="alatpay logo" />
       </div>
       <div className="flex gap-3 flex-row items-center">
         <Image src={img} width={24} height={24} alt="beach_party_logo" />
@@ -111,12 +129,14 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           atmosphere!
         </p>
       </div>
-      <form name="contact" onSubmit={handleSubmit(submit)} data-netlify= "true">
+      <form name="contact" onSubmit={handleSubmit(submit)} data-netlify="true">
         <div className="flex mt-8 flex-col gap-6">
           {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
             <div className="w-full">
-              <label htmlFor="" className="text-[#57534E] font-normal text-xs">First Name</label>
+              <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+                First Name
+              </label>
               <InputBoxComp
                 name="firstName"
                 control={control}
@@ -125,7 +145,9 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
               />
             </div>
             <div className="w-full">
-              <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Last Name</label>
+              <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+                Last Name
+              </label>
               <InputBoxComp
                 name="lastName"
                 control={control}
@@ -136,7 +158,9 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           </div>
 
           <div className="w-full">
-            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Email Address</label>
+            <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+              Email Address
+            </label>
             <InputBoxComp
               name="email"
               control={control}
@@ -145,7 +169,9 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
             />
           </div>
           <div className="w-full">
-            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Phone Number</label>
+            <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+              Phone Number
+            </label>
             <InputBoxComp
               name="phone"
               control={control}
@@ -155,7 +181,9 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           </div>
 
           <div className="w-full">
-            <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Ticket Package</label>
+            <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+              Ticket Package
+            </label>
             <SelectBoxComp
               data={formattedPayments}
               name="amount"
@@ -165,20 +193,23 @@ businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
           </div>
 
           <div className="w-full">
-          <label htmlFor=""  className="text-[#57534E] font-normal text-xs">Color</label>
-              <SelectBoxComp data={colors} name="colors" placeholder="Select your house" control={control}/>
+            <label htmlFor="" className="text-[#57534E] font-normal text-xs">
+              Color
+            </label>
+            <SelectBoxComp
+              data={colors}
+              name="colors"
+              placeholder="Select your house"
+              control={control}
+            />
           </div>
 
           <div className="hidden">
             <label htmlFor="">Currency</label>
-            <input
-              name="currency"
-              type="text"
-              defaultValue="NGN"
-            />
+            <input name="currency" type="text" defaultValue="NGN" />
           </div>
         </div>
-       
+
         <div className="my-16 flex justify-end">
           <button
             className="w-[203px] h-[48px] min-w-32 py-2 px-6 text-base font-medium rounded-lg text-white 
