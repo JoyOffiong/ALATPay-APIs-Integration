@@ -62,7 +62,7 @@ function Customer_Details() {
     fetch("https://docs.google.com/forms/d/e/1FAIpQLSdpmc5C0atledFL5jI5Td8S5YyJKGmi5lABH7rWvd0vMLLqng/formResponse", {
       method: "POST",
       body: formDatas,
-      mode: "no-cors", // Required for Google Forms
+      mode: "no-cors", 
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
 
     })
@@ -99,11 +99,7 @@ function Customer_Details() {
       console.error("Error initializing AlatPay:", error);
     }
 
-    // fetch("/", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   body: new URLSearchParams(formData).toString()
-    // })
+ 
   };
 
   const { control, handleSubmit, getValues } = useForm({ mode: "onChange" });
@@ -129,7 +125,7 @@ function Customer_Details() {
           atmosphere!
         </p>
       </div>
-      <form name="contact" onSubmit={handleSubmit(submit)} data-netlify="true">
+      <form onSubmit={handleSubmit(submit)}>
         <div className="flex mt-8 flex-col gap-6">
           {/* Title and name */}
           <div className="flex flex-col md:flex-row gap-8 w-full">
