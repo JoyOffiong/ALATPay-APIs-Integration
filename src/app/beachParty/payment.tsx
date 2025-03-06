@@ -129,7 +129,7 @@ function Customer_Details() {
       <form onSubmit={handleSubmit(submit)}>
         <div className="flex mt-8 flex-col gap-6">
           {/* Title and name */}
-          <div className="flex flex-col md:flex-row gap-8 w-full">
+          <div className="flex flex-col md:flex-row gap-6 w-full">
             <div className="w-full">
               <label htmlFor="" className="text-[#57534E] font-normal text-xs">
                 First Name
