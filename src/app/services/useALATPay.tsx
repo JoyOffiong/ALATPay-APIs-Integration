@@ -52,7 +52,7 @@ function UseALATPay({openModal, handleCloseModal}:props) {
         phone: formData.phone,
         firstName: formData.firstName,
         lastName: formData.lastName,
-        amount: formData.amount,
+        amount: +formData.amount,
         currency: formData.currency,
         metadata: formData.metaData || "",
         onTransaction: function (response: any) {
