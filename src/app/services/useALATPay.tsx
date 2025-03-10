@@ -22,7 +22,7 @@ function UseALATPay({openModal, handleCloseModal}:props) {
     useEffect(() => {
       if (alatPayInitialized && !window.Alatpay) {
         const script = document.createElement("script");
-        script.src = "https://web.alatpay.ng/js/alatpay.js";
+        script.src = "https://alatpay-client.azurewebsites.net/js/alatpay.js";
         script.async = true;
     
         script.onload = () => {
@@ -46,8 +46,8 @@ function UseALATPay({openModal, handleCloseModal}:props) {
       }
     
       const config = {
-        apiKey: "e92396f5549649fabb769d2a9387f058",
-        businessId: "a9e640c0-4ce5-4291-27ca-08dcd31fac98",
+        apiKey: "41cf424d734c4883b59f3ba5aabc42a5",
+        businessId: "1e36f623-a60f-4338-1093-08dc48d3aba4",
         email: formData.email,
         phone: formData.phone,
         firstName: formData.firstName,

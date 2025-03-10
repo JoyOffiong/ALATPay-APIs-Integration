@@ -37,11 +37,11 @@ export default function TableComponent({
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {Tableheadings.map((heading) => {
+            {Tableheadings.map((heading, index) => {
               return (
-                <>
+                <div key={index}>
                   <TableCell align="right">{heading.label}</TableCell>
-                </>
+                </div>
               );
             })}
           </TableRow>

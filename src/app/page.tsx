@@ -113,19 +113,19 @@ function App() {
       <div className="flex flex-col w-full items-center justify-start md:justify-between md:flex-row ">
         <p className="text-2xl font-semibold text-secondary">Task for today</p>
 
-        <Button
+        {/* <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
           onClick={() => setOpen(true)}
         >
           Add Tasks
-        </Button>
+        </Button> */}
         <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
           onClick={() => setOpenModal(true)}
         > Fund Wallet
         </Button>
       </div>
-      <div className="w-full">
+      {/* <div className="w-full">
         <TableComponent
           Tableheadings={Tableheadings}
           rows={rows}
@@ -133,7 +133,7 @@ function App() {
           deleteItem={deleteItem}
           fetchItemById={fetchItemById}
         />
-      </div>
+      </div> */}
       <div className="items-right flex flex-col space-y-2 text-center">
       <em>To use our pro version </em> 
        <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Pay N100</em></button> 

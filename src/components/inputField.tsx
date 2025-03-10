@@ -51,8 +51,7 @@ export default function InputBoxComp({
       render={({ field }) => (
         <TextField
           {...field}
-          value={(field.value as string) ?? ""}
-          defaultValue={defaultValue}
+
           color={color}
           label={label}
           minRows={minRows}
