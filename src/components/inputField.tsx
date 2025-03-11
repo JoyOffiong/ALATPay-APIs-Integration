@@ -41,8 +41,6 @@ export default function InputBoxComp({
   hiddenLabel,
   minRows,
   variant = "outlined",
-  color = "primary",
-  defaultValue,
 }: InputBoxCompProps) {
   return (
     <Controller
@@ -51,8 +49,6 @@ export default function InputBoxComp({
       render={({ field }) => (
         <TextField
           {...field}
-
-          color={color}
           label={label}
           minRows={minRows}
           multiline={multiline}

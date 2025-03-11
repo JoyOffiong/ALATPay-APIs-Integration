@@ -46,7 +46,7 @@ function UseALATPay({openModal, handleCloseModal}:props) {
       }
     
       const config = {
-        apiKey: "41cf424d734c4883b59f3ba5aabc42a5",
+        apiKey: "643743e017b24ffe8bc91238bdf6a89a",
         businessId: "1e36f623-a60f-4338-1093-08dc48d3aba4",
         email: formData.email,
         phone: formData.phone,
