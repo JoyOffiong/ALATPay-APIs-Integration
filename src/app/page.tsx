@@ -46,11 +46,11 @@ function App() {
     setRefetch(false);
   }, [refetch]);
 
-  const handleClose = () => {
-    setOpen(false);
-    setUpdate(false);
-    setTasks({});
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   setUpdate(false);
+  //   setTasks({});
+  // };
   const router = useRouter(); 
   useEffect(() => {
     if (router) {
@@ -71,16 +71,16 @@ function App() {
 
 
     
-  const fetchItemById = (id: string) => {
-    setUpdate(true)
-    setOpen(true);
-    const item = rows.find((row) => row.id === id);
-    if (item) {
-      setTasks(item);
-    } else {
-      setTasks({});
-    }
-  };
+  // const fetchItemById = (id: string) => {
+  //   setUpdate(true)
+  //   setOpen(true);
+  //   const item = rows.find((row) => row.id === id);
+  //   if (item) {
+  //     setTasks(item);
+  //   } else {
+  //     setTasks({});
+  //   }
+  // };
 
   const deleteItem = (id: string) => {
     const item = rows.findIndex((row) => row.id === id);
@@ -139,16 +139,16 @@ function App() {
        <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Pay N100</em></button> 
        
       </div> */}
-      {open && (
-        <AddTasks
-          open={open}
-          update={update}
-          handleClose={handleClose}
-          setRefetch={setRefetch}
-          setTasks={setTasks}
-          tasks={tasks}
-        />
-      )}
+      {/* {open && ( 
+         <AddTasks
+        //   open={open}
+        //   update={update}
+        //   handleClose={handleClose}
+        //   setRefetch={setRefetch}
+        //   setTasks={setTasks}
+        //   tasks={tasks}
+        // />
+      )}  */}
        {openCustomerModal && (
        <CustomerInfo
        openCustomerModal={openCustomerModal}
