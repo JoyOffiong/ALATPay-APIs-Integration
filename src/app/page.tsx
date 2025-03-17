@@ -134,11 +134,11 @@ function App() {
           fetchItemById={fetchItemById}
         />
       </div> */}
-      <div className="items-right flex flex-col space-y-2 text-center">
+      {/* <div className="items-right flex flex-col space-y-2 text-center">
       <em>To use our pro version </em> 
        <button onClick={()=>handleOpenModal()}><em className="bg-[#272934] text-[#fff4a3] rounded-md p-2">Pay N100</em></button> 
        
-      </div>
+      </div> */}
       {open && (
         <AddTasks
           open={open}

@@ -46,9 +46,11 @@ export default function InputBoxComp({
     <Controller
       name={name}
       control={control}
+      defaultValue={""}
       render={({ field }) => (
         <TextField
           {...field}
+          value={field.value ?? ""}
           label={label}
           minRows={minRows}
           multiline={multiline}
