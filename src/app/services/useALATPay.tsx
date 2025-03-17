@@ -39,15 +39,9 @@ function UseALATPay({openModal, handleCloseModal}:props) {
     }, [alatPayInitialized]);
     
     const submit = (formData: any) => {
-      if (!window.Alatpay) {
-        setAlatPayInitialized(true);
-        setTimeout(() => submit(formData), 1000); // Retry after 1 second
-        return;
-      }
-    
       const config = {
-        apiKey: "643743e017b24ffe8bc91238bdf6a89a",
-        businessId: "1e36f623-a60f-4338-1093-08dc48d3aba4",
+        apiKey: "2b11fe4f55244516bcf9040f733eeaef",
+        businessId: "95eaac56-5627-45a0-285b-08dcfa9cf102",
         email: formData.email,
         phone: formData.phone,
         firstName: formData.firstName,
@@ -62,10 +56,18 @@ function UseALATPay({openModal, handleCloseModal}:props) {
           console.log("Payment gateway is closed.");
         },
       };
-    
-      const newPopup = window.Alatpay.setup(config);
-      console.log("Popup initialized:", newPopup);
-      newPopup.show();
+  
+      try {
+          const newPopup = (window as any).Alatpay.setup(config);
+          if (newPopup) {
+          console.log("Popup initialized:", newPopup);
+          newPopup.show();
+        } else {
+          console.error("Failed to initialize AlatPay popup.");
+        }
+      } catch (error) {
+        console.error("Error initializing AlatPay:", error);
+      }
     };
     
     
