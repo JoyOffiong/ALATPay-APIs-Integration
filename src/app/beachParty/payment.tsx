@@ -71,8 +71,8 @@ function Customer_Details() {
       .catch((error) => error);
 
     const config = {
-      apiKey: "af578298aec04578beb7f9b70828ad70",
-      businessId: "1ada836e-ba62-4146-db8b-08dd4ac0a01c",
+      apiKey: "ef975ebf096945e7b483506ebe55079f",
+      businessId: "6ec40f19-9679-4a2b-d405-08dd47630494",
       email: formData.email,
       phone: formData.phone,
       firstName: formData.firstName,
