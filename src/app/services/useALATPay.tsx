@@ -20,7 +20,7 @@ function UseALATPay({openModal, handleCloseModal}:props) {
     const [formDetails, setFormDetails] = useState({})
  
     useEffect(() => {
-      if (alatPayInitialized && !window.Alatpay) {
+      if (typeof window !== "undefined" && !window.Alatpay) {
         const script = document.createElement("script");
         script.src = "https://alatpay-client.azurewebsites.net/js/alatpay.js";
         script.async = true;

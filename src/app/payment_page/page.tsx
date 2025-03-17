@@ -39,20 +39,20 @@ function PaymentPage() {
               setVA_Response(res)
             })
   }
-  const renderPaymentComponent=()=>{
-    switch(current){
-      case "card":
-        return <PayWithCard />;
-      case "bankTransfer":
-        return <PaywithBankTransfer VA_Response={VA_Response} />;
-      case "bankDetails":
-        return <PayWithBankDetails/>;
-      case "phoneNumber":
-        return <PayWithPhoneNumber/>;
-      default:
-        return null;
-          }
-  }
+  // const renderPaymentComponent=()=>{
+  //   switch(current){
+  //     case "card":
+  //       return <PayWithCard />;
+  //     case "bankTransfer":
+  //       return <PaywithBankTransfer VA_Response={VA_Response} />;
+  //     case "bankDetails":
+  //       return <PayWithBankDetails/>;
+  //     case "phoneNumber":
+  //       return <PayWithPhoneNumber/>;
+  //     default:
+  //       return null;
+  //         }
+  // }
 
   
 
@@ -120,7 +120,7 @@ function PaymentPage() {
               </div>
             </div>
 </div>
-<div className="md:w-1/2 w-full">{renderPaymentComponent()}</div>
+{/* <div className="md:w-1/2 w-full">{renderPaymentComponent()}</div> */}
 </div>
          
         </div>
