@@ -46,8 +46,8 @@ function UseALATPay({openModal, handleCloseModal}:props) {
       }
     
       const config = {
-        apiKey: "643743e017b24ffe8bc91238bdf6a89a",
-        businessId: "1e36f623-a60f-4338-1093-08dc48d3aba4",
+        apiKey: "2e4b79a31781416a813b919fa4ee3922",
+        businessId: "95eaac56-5627-45a0-285b-08dcfa9cf102",
         email: formData.email,
         phone: formData.phone,
         firstName: formData.firstName,
@@ -151,7 +151,7 @@ const {control, handleSubmit, getValues} = useForm({mode:"onChange"})
             <div className='hidden'>
               <InputBoxComp
                 name="businessId"
-                defaultValue="a9e640c0-4ce5-4291-27ca-08dcd31fac98"
+                defaultValue="95eaac56-5627-45a0-285b-08dcfa9cf102"
                 control={control}
                 type="text"
                 label="Amount"
@@ -160,7 +160,7 @@ const {control, handleSubmit, getValues} = useForm({mode:"onChange"})
             <div className='hidden'>
               <InputBoxComp
                 name="apiKey"
-                defaultValue="18eff8dbdb364520a4b7bd6a21db7da7"
+                defaultValue="2e4b79a31781416a813b919fa4ee3922"
                 control={control}
                 type="text"
                 label="Amount"
