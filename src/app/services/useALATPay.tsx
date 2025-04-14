@@ -1,7 +1,6 @@
 "use client"
 
-import InputBoxComp from '@/components/inputField'
-import style from '@/components/style'
+
 import { Modal, Box } from '@mui/material'
 import { Currency } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
@@ -78,12 +77,7 @@ const {control, handleSubmit, getValues} = useForm({mode:"onChange"})
 
   return (
     <div>
-          <Modal
-      open={openModal}
-      onClose={handleCloseModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+          
       <Box sx={style}>
         <p className="text-secondary font-semibold mb-10">
         Enter your Information
@@ -172,7 +166,6 @@ const {control, handleSubmit, getValues} = useForm({mode:"onChange"})
        
       </form>
       </Box>
-      </Modal>
     </div>
   )
 }
