@@ -22,7 +22,7 @@ function UseALATPay({openModal, handleCloseModal}:props) {
     useEffect(() => {
       if (alatPayInitialized && !window.Alatpay) {
         const script = document.createElement("script");
-        script.src = "https://alatpay-client.azurewebsites.net/js/alatpay.js";
+        script.src = "https://web.alatpay.ng/js/alatpay.js";
         script.async = true;
     
         script.onload = () => {

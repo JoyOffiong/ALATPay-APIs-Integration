@@ -52,11 +52,7 @@ function App() {
   //   setTasks({});
   // };
   const router = useRouter(); 
-  useEffect(() => {
-    if (router) {
-      console.log("Router is mounted");
-    }
-  }, [router]);
+
 
 
     const handleCloseCustomerModal=()=>{
