@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import UseALATPay from "./services/useALATPay";
+import Form from "./components/form";
 
 interface T {
   id: string;
@@ -12,7 +13,7 @@ function App() {
 
    
   return (
-     < UseALATPay
+     < Form
           
           />
 
