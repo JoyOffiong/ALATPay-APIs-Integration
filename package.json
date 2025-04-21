@@ -12,6 +12,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.5",
+    "alatpay": "^1.0.0",
     "axios": "^1.7.9",
     "lucide-react": "^0.417.0",
     "my-todos-app": "file:",

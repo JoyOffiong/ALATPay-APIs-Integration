@@ -3,27 +3,30 @@ import { useForm } from 'react-hook-form'
 import style from './style'
 import { Box, MenuItem } from '@mui/material'
 import InputBoxComp from './inputfield'
-import UseALATPay from '../services/useALATPay'
 
 function Form() {
     const {control, handleSubmit, getValues} = useForm({mode:"onChange"})
-
-    const submit=(data:any)=>{
-     alatPay.submit(data)
+    const values= getValues()
+   
+    const submit=()=>{
+     alatpay.submit(values)
     }
 
-    const values= getValues()
-     const alatPay = UseALATPay({
-      amount: values.amount,
+      console.log(values)
+
+      const alatpay= UseALATPay({
+      amount: +values.amount,
       apiKey: "14feff9729184eb09e0385184efc1816", 
       businessId: "582418f7-032f-48ca-27c8-08dcd31fac98", 
-      currency:values.curency,
-      email:values.email, 
+      currency: values.curency,
+      email: values.email, 
       firstName:values.firstName,
       lastName:values.firstName, 
       metadata:values.metadata,   
       phone:values.phone
     })
+     console.log(values)
+
   return (
     <div>
           
@@ -31,7 +34,7 @@ function Form() {
       <p className="text-secondary font-semibold mb-10">
       Enter your Information
       </p>
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={handleSubmit}>
       
         <div className="flex flex-col gap-6">
         <div>
@@ -50,6 +53,7 @@ function Form() {
               label="Last Name"
             />
           </div>
+         
           <div>
             <InputBoxComp
               name="email"
