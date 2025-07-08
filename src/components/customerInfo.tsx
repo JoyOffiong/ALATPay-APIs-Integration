@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 import InputBoxComp from './inputField';
 import LoadingButton from './loadingbutton';
 import { toast, ToastContainer } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import { addCustomer } from '@/app/store/customerSlice';
+import { useDispatch } from 'react-redux';
 
 type Props = {
     handleCloseCustomerModal: () => void;
@@ -29,13 +32,17 @@ function CustomerInfo({handleCloseCustomerModal, openCustomerModal}:Props) {
 const {control, handleSubmit} = useForm({mode:"onChange"})
 const [loading, setLoading] = useState<boolean>(false)
 
-const submit=(data:ICustomer)=>{
+  const dispatch = useDispatch()
+
+const router = useRouter()
+const submit=(data:any)=>{
 
     setLoading(true)
 
-    localStorage.setItem("customer", JSON.stringify({...data, metadata:""}));
-  
+  dispatch(addCustomer(data))  
     notify();
+               router.push("/payment_page");
+
     
     setTimeout(() => {
       handleCloseCustomerModal()
@@ -90,8 +97,16 @@ const submit=(data:ICustomer)=>{
                 label="Phone Number"
               />
             </div>
+              <div>
+              <InputBoxComp
+                name="amount"
+                control={control}
+                type="number"
+                label="Amount"
+              />
+            </div>
             <div className="flex flex-end justify-end">
-              <LoadingButton text="Add" loading={loading}/>
+              <LoadingButton text="Submit" loading={loading}/>
              </div>
           </div>
         </form>

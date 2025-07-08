@@ -12,6 +12,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.5",
+    "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.7.9",
     "lucide-react": "^0.417.0",
     "my-todos-app": "file:",
@@ -19,8 +20,10 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
-    "react-router": "^7.1.1",
+    "react-redux": "^9.2.0",
     "react-toastify": "^11.0.2",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

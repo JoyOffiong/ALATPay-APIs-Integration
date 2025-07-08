@@ -13,30 +13,29 @@ import PayWithPhoneNumber from "./components/pay_with_phoneNumber";
 
 import { BankTransferAPIs } from "../services/bankTransfer";
 import { v4 as uuidv4 } from 'uuid';
-
-interface VirtualAccount {
-  virtualBankAccountNumber: string;
-   
-  }
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
+import { addResponse, va_responseItem } from "../store/va_responseSlice";
+import { CustomerItem } from "../store/customerSlice";
 
 function PaymentPage() {
 
-  const [current, setCurrent] = useState<string>("card")
-  const [VA_Response, setVA_Response] = useState<VirtualAccount[]>([]);
+    const loggedInCustomer:CustomerItem | null = useSelector((state: RootState) => state.customer.items) || null;
 
+  const [current, setCurrent] = useState<string>("card")
+
+  const dispatch = useDispatch()
   const fetchAccountNumber=()=>{
-    const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
     BankTransferAPIs.createVirtualAccount({
             businessId,
             channel:"3",
             currency: "NGN",
             description:"Blaqkly checkout",
-            customer:customerData,
+            customer:loggedInCustomer,
             businessName: "Blaqkly",  
             orderId: `OID- ${uuidv4()}`,
             amount: 100}).then((res:any)=>{
-              console.log(res)
-              setVA_Response(res)
+              dispatch(addResponse(res))
             })
   }
   const renderPaymentComponent=()=>{
@@ -44,7 +43,7 @@ function PaymentPage() {
       case "card":
         return <PayWithCard />;
       case "bankTransfer":
-        return <PaywithBankTransfer VA_Response={VA_Response} />;
+        return <PaywithBankTransfer  />;
       case "bankDetails":
         return <PayWithBankDetails/>;
       case "phoneNumber":

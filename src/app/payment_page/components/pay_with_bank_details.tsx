@@ -1,5 +1,5 @@
 import { PayWithBankDetailsData } from '@/app/models/bankDetailsModel';
-import { BankDetailsAPI } from '@/app/services/bankDetails';
+import { BankDetailsAPI, validatePayment } from '@/app/services/bankDetails';
 import InputBoxComp from '@/components/inputField'
 import LoadingButton from '@/components/loadingbutton'
 import React, { useEffect, useState } from 'react'
@@ -9,6 +9,11 @@ import verify from "../../../images/verify.png";
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
+import { clearResponse} from "@/app/store/va_responseSlice";
+import { CustomerItem } from '@/app/store/customerSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store/store';
+
 
 function PayWithBankDetails() {
 
@@ -17,18 +22,23 @@ function PayWithBankDetails() {
         });
 const [loading, setLoading] = useState<boolean>(false)
 const [otpScreen, setOtpScreen] = useState<boolean>(false)
+const [bankDetails, setBankDetails] = useState<boolean>(true)
   const [successScreen, setSuccessScreen] = useState<boolean>(false);
 
+const [transId, setTransId] = useState<string>("")
+
   const router = useRouter(); 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (router) {
       console.log("Router is mounted");
     }
   }, [router]);
   const navigateBack =()=>{
-    router.push
-  }
-const customerData = JSON.parse(localStorage.getItem("customer")|| "[]");
+dispatch(clearResponse())
+    router.push("../")  }
+    const loggedInCustomer:CustomerItem | null = useSelector((state: RootState) => state.customer.items) || null;
 
 const onsubmit=(data:PayWithBankDetailsData)=>{
   setLoading(true)
@@ -38,16 +48,17 @@ const onsubmit=(data:PayWithBankDetailsData)=>{
              businessId,
                     channel:"1",
                     description:"Blaqkly checkout",
-                    customer:customerData,
+                    customer:loggedInCustomer,
                     bankCode: "035",
 
                     businessName: "Blaqkly",  
             orderId: `OID- ${uuidv4()}`,
-                    amount: 100,
+                    amount: loggedInCustomer?.amount,
           }
   )
-  .then((res)=>{
-    console.log(res)
+  .then((res:any)=>{
+     setBankDetails(false)
+     setTransId(res?.transactionId)
     setLoading(false)
     setOtpScreen(true)
   })
@@ -57,14 +68,17 @@ const onsubmit=(data:PayWithBankDetailsData)=>{
   })
 }
 
-const submitOTP=(data:PayWithBankDetailsData)=>{
+const submitOTP=(data:validatePayment)=>{
   setLoading(true)
-  BankDetailsAPI.validateOTP(data)
+  console.log(data)
+  BankDetailsAPI.validateOTP({otp:data.otp, transactionId:transId})
   .then((res:any)=>{
     setLoading(false)
-    if(res.message){
+        setOtpScreen(false)
+
+     if(res.message){
       setSuccessScreen(true)
-    }
+    };
   })
   .catch((err:any)=>{
     setLoading(false)
@@ -73,7 +87,7 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
   return (
     <div>
     <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
-      { !otpScreen ? (
+      {bankDetails && (
          <div>
          <p className=" font-medium text-xl">
           Enter your Wema Bank Account Number
@@ -100,9 +114,8 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
          </div>
          </form>
          </div>
-      ) :
-      (
-        <div>
+    )}
+      { otpScreen && (  <div>
         <p className=" font-medium text-xl">
          Enter OTP
         </p>
@@ -127,23 +140,17 @@ const submitOTP=(data:PayWithBankDetailsData)=>{
         
         </div>
         </form>
-        </div>
-      )
+        </div>)
       }
      
-     
-      
-    </div>
-    
-    <div className="shadow-lg p-14 space-y-2 w-full bg-white ">
     {successScreen && (
-        <div className="space-y-4">
+        <div className="space-y-4 text-center">
           <p className="text-lg font-bold">Transaction Successful</p>
-          <Image src={verify} alt="verify" width={100} height={100} />
-          <div className="text-center flex justify-center">
+          <Image src={verify} alt="verify" width={100} height={100} className='flex justify-self-center'/>
+          <div className="text-center flex pt-4 justify-center">
                   <button
                     onClick={() => navigateBack()}
-                    className="bg-secondary flex gap-4 px-6 py-3 rounded-md bg-blue-600  text-white border-blue-400 text-lightBrown"
+                    className=" flex gap-4 px-4 py-2 rounded-md text-[#fff4a3]  bg-[#272934]"
                   >
 Close                  </button>
                 </div>

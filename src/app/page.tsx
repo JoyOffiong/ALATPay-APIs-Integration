@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import CustomerInfo from "@/components/customerInfo";
 import { useRouter } from "next/navigation";
 import UseALATPay from "./services/useALATPay";
+import { Bold } from "lucide-react";
 
 interface T {
   id: string;
@@ -25,12 +26,11 @@ function App() {
   const [update, setUpdate] = useState<boolean>(false);
   const [tasks, setTasks] = useState<T>();
 
-  const [openModal,  setOpenModal] = useState<boolean>(false)
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const handleCloseModal=()=>{
-      setOpenModal(false)
-    
-    }
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const Tableheadings = [
     { label: "S/N" },
@@ -51,22 +51,18 @@ function App() {
   //   setUpdate(false);
   //   setTasks({});
   // };
-  const router = useRouter(); 
+  const router = useRouter();
 
+  const handleCloseCustomerModal = () => {
+    setOpenCustomerModal(false);
 
+    router.push("../payment_page");
+  };
 
-    const handleCloseCustomerModal=()=>{
-      setOpenCustomerModal(false)
-          
-      router.push("../payment_page");
-    }
+  const handleOpenModal = () => {
+    setOpenCustomerModal(true);
+  };
 
-    const handleOpenModal=()=>{
-      setOpenCustomerModal(true)
-    }
-
-
-    
   // const fetchItemById = (id: string) => {
   //   setUpdate(true)
   //   setOpen(true);
@@ -89,7 +85,6 @@ function App() {
     <div className="flex min-h-screen gap-4 mt-20 gap-y-8 p-4 flex-col items-center w-full">
       <Header />
 
-      
       <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
         <div>
           <p className="text-secondary text-4xl font-semibold">My Tasks</p>
@@ -106,8 +101,8 @@ function App() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full items-center justify-start md:justify-between md:flex-row ">
-        <p className="text-2xl font-semibold text-secondary">Task for today</p>
+      <div className="flex flex-col w-full gap-4 items-center justify-start md:justify-between md:flex-row ">
+        <p className="text-2xl font-semibold text-secondary">Inflows</p>
 
         {/* <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
@@ -115,11 +110,41 @@ function App() {
         >
           Add Tasks
         </Button> */}
-        <Button
-          sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
+
+        <div className="flex flex-col gap-4">
+ <Button
+          sx={{
+            backgroundColor: "#272934",
+            color: "#fff4a3",
+            "&:hover": {
+              color: "#272934",
+              backgroundColor: "#fff4a3",
+              fontWeight: "Bold",
+            },
+          }}
           onClick={() => setOpenModal(true)}
-        > Fund Wallet
+        >
+          {" "}
+          Fund Wallet via webplugin
         </Button>
+
+        <Button
+          sx={{
+            backgroundColor: "#272934",
+            color: "#fff4a3",
+            "&:hover": {
+              color: "#272934",
+              backgroundColor: "#fff4a3",
+              fontWeight: "Bold",
+            },
+          }}
+          onClick={() => handleOpenModal()}
+        >
+          {" "}
+        Fund Wallet via APIs
+        </Button>
+        </div>
+       
       </div>
       {/* <div className="w-full">
         <TableComponent
@@ -145,22 +170,17 @@ function App() {
         //   tasks={tasks}
         // />
       )}  */}
-       {openCustomerModal && (
-       <CustomerInfo
-       openCustomerModal={openCustomerModal}
-       handleCloseCustomerModal={handleCloseCustomerModal}  
-       />
-     )}
+      {openCustomerModal && (
+        <CustomerInfo
+          openCustomerModal={openCustomerModal}
+          handleCloseCustomerModal={handleCloseCustomerModal}
+        />
+      )}
 
-     {openModal &&(
-          < UseALATPay
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}
-          />
-     )}
+      {openModal && (
+        <UseALATPay openModal={openModal} handleCloseModal={handleCloseModal} />
+      )}
     </div>
-
-    
   );
 }
 

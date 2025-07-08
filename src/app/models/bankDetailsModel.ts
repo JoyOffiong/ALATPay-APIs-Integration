@@ -1,3 +1,4 @@
+import { CustomerItem } from "../store/customerSlice";
 
 
 export interface PayWithBankDetailsData {
@@ -9,8 +10,8 @@ export interface PayWithBankDetailsData {
     transactionId?: string,
     channel: string,
     otp?: string,
-    amount: number,
+    amount: number | undefined,
     accountNumber: string,
     bankCode: string,
-    customer: object
+    customer?: CustomerItem | null,
   }

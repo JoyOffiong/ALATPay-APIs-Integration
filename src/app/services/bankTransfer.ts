@@ -23,7 +23,7 @@ const createVirtualAccount = (data:PayWithBankTransferData)=>{
 
 const ConfirmTransfer= (data:PayWithBankTransferData)=>{
     return new Promise((resolve, reject)=>{
-        axios.get(`${baseURL}/bank-transfer/api/v1/bankTransfer/transactions/${data.transactionId}`,
+        axios.get(`${baseURL}/alatpaytransaction/api/v1/transactions/${data.transactionId}`,
             {
                 headers:{
                     "Content-Type":"application/json",
