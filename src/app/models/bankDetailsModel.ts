@@ -2,7 +2,7 @@ import { CustomerItem } from "../store/customerSlice";
 
 
 export interface PayWithBankDetailsData {
-    businessId: string,
+    businessId: string | undefined,
     businessName: string,
     currency: string,
     orderId: string,

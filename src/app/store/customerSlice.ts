@@ -3,9 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
  export interface CustomerItem{
     firstName: string | undefined;
     lastName: string | undefined;
-    email: number;
-    phone: string;
-    amount: number;
+    email: string | undefined;
+    phone: string | undefined;
+    amount?: number;
 }
 
 interface CartState{

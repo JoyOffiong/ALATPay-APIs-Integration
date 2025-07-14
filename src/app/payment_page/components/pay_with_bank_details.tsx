@@ -4,7 +4,6 @@ import InputBoxComp from '@/components/inputField'
 import LoadingButton from '@/components/loadingbutton'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { businessId } from "../../app";
 import verify from "../../../images/verify.png";
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,6 +15,9 @@ import { RootState } from '@/app/store/store';
 
 
 function PayWithBankDetails() {
+
+const businessId = process.env.NEXT_PUBLIC_BUSINESSID ;
+
 
    const { control, handleSubmit } = useForm<PayWithBankDetailsData>({
       mode: "onChange"
@@ -75,8 +77,7 @@ const submitOTP=(data:validatePayment)=>{
   .then((res:any)=>{
     setLoading(false)
         setOtpScreen(false)
-
-     if(res.message){
+     if(res.data.message === "Success"){
       setSuccessScreen(true)
     };
   })

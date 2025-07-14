@@ -4,7 +4,7 @@ import Header from "@/components/header";
 import ALATPayLogo from "../../images/alatLogo.png";
 import Image from "next/image";
 import React, { useState } from "react";
-import { businessId } from "../app";
+
 import PayWithCard from "./components/pay_with_card";
 import PaywithBankTransfer from "./components/pay_with_bank_transfer";
 import { CreditCard, Landmark, NotebookTabs, Smartphone } from "lucide-react";
@@ -21,6 +21,9 @@ import { CustomerItem } from "../store/customerSlice";
 function PaymentPage() {
 
     const loggedInCustomer:CustomerItem | null = useSelector((state: RootState) => state.customer.items) || null;
+const businessId = process.env.NEXT_PUBLIC_BUSINESSID;
+
+
 
   const [current, setCurrent] = useState<string>("card")
 

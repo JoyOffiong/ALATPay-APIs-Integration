@@ -7,7 +7,7 @@ export interface PayWithBankTransferData {
     businessName?: string,  
     amount?: 100,
     orderId?:  string,
-    customer?: CustomerItem | null,
+    customer?: CustomerItem | null | undefined,
     description?: string,
     channel?: string,
     transactionId?: string  }

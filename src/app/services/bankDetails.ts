@@ -1,5 +1,4 @@
 import { baseURL } from "../app";
-import { APIKey } from "../app";
 import axios from "axios";
 import { PayWithBankDetailsData } from "../models/bankDetailsModel";
 import { headers } from "next/headers";
@@ -8,6 +7,8 @@ export type validatePayment={
   otp?: string | undefined,
   transactionId?: string | undefined
 } 
+
+const APIKey = process.env.NEXT_PUBLIC_API_KEY;
 
 const sendOTP =(data:PayWithBankDetailsData)=>{
     return new Promise((resolve, reject)=>{
