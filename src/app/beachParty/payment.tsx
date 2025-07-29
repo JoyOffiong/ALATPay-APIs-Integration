@@ -35,15 +35,13 @@ function Customer_Details() {
   }, [alatPayInitialized]);
 
   const payments = [
-    { value: 15000, label: "Single Ticket - ₦15,000" },
-    { value: 70000, label: "Group of 5 - ₦70,000" },
+    { value: 15000, label: "Regular - ₦15,000" },
+    { value: 50000, label: "VIP - ₦50,000" },
+    { value: 500000, label: "Circle of 5 - ₦500,000" },
+    { value: 1000000, label: "Platinum - ₦1,000,000" },
   ];
 
-  const colors = [
-    { value: "Purple house", label: "Purple House" },
-    { value: "Green house", label: "Green House" },
-    { value: "Pink house", label: "Pink House" },
-  ];
+
 
   const formattedPayments = payments.map((p) => ({
     value: String(p.value),
@@ -71,8 +69,8 @@ function Customer_Details() {
       .catch((error) => error);
 
     const config = {
-      apiKey: "ef975ebf096945e7b483506ebe55079f",
-      businessId: "6ec40f19-9679-4a2b-d405-08dd47630494",
+      apiKey: "f8fddaad2dc249a0a12d9e0ba7ba5376",
+      businessId: "582418f7-032f-48ca-27c8-08dcd31fac98",
       email: formData.email,
       phone: formData.phone,
       firstName: formData.firstName,
@@ -114,7 +112,7 @@ function Customer_Details() {
       <div className="flex gap-3 flex-row items-center">
         <Image src={img} width={24} height={24} alt="beach_party_logo" />
         <p className="md:text-base text-sm font-semibold bg-gradient-to-r from-[#022876] to-[#EFAB04] bg-clip-text text-transparent">
-          Beach_terhousesport Festival
+          Makana Still Standing
         </p>
       </div>
       <div className="space-y-4">
@@ -189,17 +187,7 @@ function Customer_Details() {
             />
           </div>
 
-          <div className="w-full">
-            <label htmlFor="" className="text-[#57534E] font-normal text-xs">
-              Color
-            </label>
-            <SelectBoxComp
-              data={colors}
-              name="colors"
-              placeholder="Select your house"
-              control={control}
-            />
-          </div>
+          
 
           <div className="hidden">
             <label htmlFor="">Currency</label>
