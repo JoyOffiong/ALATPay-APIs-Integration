@@ -24,6 +24,7 @@ const businessId = process.env.NEXT_PUBLIC_BUSINESSID ;
         });
 const [loading, setLoading] = useState<boolean>(false)
 const [otpScreen, setOtpScreen] = useState<boolean>(false)
+  const [res, setRes] = useState<object>({})
 const [bankDetails, setBankDetails] = useState<boolean>(true)
   const [successScreen, setSuccessScreen] = useState<boolean>(false);
 
@@ -76,6 +77,7 @@ const submitOTP=(data:validatePayment)=>{
   BankDetailsAPI.validateOTP({otp:data.otp, transactionId:transId})
   .then((res:any)=>{
     setLoading(false)
+    setRes(res.data)
         setOtpScreen(false)
      if(res.data.message === "Success"){
       setSuccessScreen(true)
@@ -85,6 +87,9 @@ const submitOTP=(data:validatePayment)=>{
     setLoading(false)
   })
 }
+
+console.log(res)
+
   return (
     <div>
     <div className="shadow-lg p-14 space-y-2 w-full bg-white ">

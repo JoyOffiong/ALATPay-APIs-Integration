@@ -34,7 +34,12 @@ const businessId = process.env.NEXT_PUBLIC_BUSINESSID;
             channel:"3",
             currency: "NGN",
             description:"Blaqkly checkout",
-            customer:loggedInCustomer,
+            customer:{
+              email: loggedInCustomer?.email,
+      phone: loggedInCustomer?.phone ,
+      firstName: loggedInCustomer?.firstName ,
+      lastName: loggedInCustomer?.lastName,
+            },
             businessName: "Blaqkly",  
             orderId: `OID- ${uuidv4()}`,
             amount: 100}).then((res:any)=>{

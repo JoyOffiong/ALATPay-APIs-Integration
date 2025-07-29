@@ -15,6 +15,7 @@ import { RootState } from "@/app/store/store";
 function PaywithBankTransfer() {
   const [pendingMode, setPendingMode] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [res, setRes] = useState<object>({})
   const [successScreen, setSuccessScreen] = useState<boolean>(false);
   const [bankAccount, setBankAccount] = useState<boolean>(true);
 
@@ -42,6 +43,7 @@ function PaywithBankTransfer() {
     
         BankTransferAPIs.ConfirmTransfer({ transactionId: TRANSID })
           .then((res: any) => {
+            setRes(res)
             console.log(res)
             setLoading(false);
             if (res.message === "Success") {
@@ -58,6 +60,7 @@ function PaywithBankTransfer() {
 
   };
 
+  console.log(res)
   return (
     <>
       <div className="shadow-lg p-4 space-y-3 w-full bg-white">

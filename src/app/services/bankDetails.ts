@@ -38,7 +38,7 @@ const validateOTP =(data:validatePayment)=>{
                     }
             }
         ).then((res)=>{
-            resolve(res);
+            resolve(res.data);
         }).catch((error)=>{
             reject(error)
         })

@@ -5,12 +5,15 @@ import Header from "@/components/header";
 import TableComponent from "@/components/tableComponent";
 import { Button } from "@mui/material";
 import Image from "next/image";
-import toDo from "../images/to-do.avif";
+import wallet from "../images/wallet.webp";
 import React, { useState, useEffect } from "react";
 import CustomerInfo from "@/components/customerInfo";
 import { useRouter } from "next/navigation";
 import UseALATPay from "./services/useALATPay";
 import { Bold } from "lucide-react";
+import { StatusItem } from "./store/ConfirmStatus";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 interface T {
   id: string;
@@ -40,6 +43,10 @@ function App() {
     { label: "Action" },
   ];
 
+const status : StatusItem | null =  useSelector((state:RootState)=>state.status.items) || null;
+
+
+console.log(status)
   useEffect(() => {
     const info: T[] = JSON.parse(localStorage.getItem("tasks") || "[]");
     setRows(info);
@@ -85,14 +92,15 @@ function App() {
     <div className="flex min-h-screen gap-4 mt-20 gap-y-8 p-4 flex-col items-center w-full">
       <Header />
 
-      <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
-        <div>
-          <p className="text-secondary text-4xl font-semibold">My Tasks</p>
+      <div className="rounded-lg  flex flex-col md:flex-row items-center gap-4 bg-[#e79b59] justify-between shadow-md p-6 w-full ">
+        <div className="space-y-4 ">
+          <p className="text-secondary text-4xl font-semibold">My Wallet</p>
+          <p>Balance: <em className="font-bold">₦ 100</em></p>
         </div>
 
         <div className="w-1/2 justify-center flex ">
           <Image
-            src={toDo}
+            src={wallet}
             alt="tasks image"
             height={250}
             width={250}
@@ -101,7 +109,7 @@ function App() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full gap-4 items-center justify-start md:justify-between md:flex-row ">
+      <div className="flex flex-col-reverse w-full gap-4 items-center justify-start md:justify-between md:flex-row ">
         <p className="text-2xl font-semibold text-secondary">Inflows</p>
 
         {/* <Button

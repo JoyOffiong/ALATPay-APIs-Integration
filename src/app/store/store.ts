@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 import customerReducer from './customerSlice';
 import VA_ResponseReducer from './va_responseSlice';
+import transactionStatusReducer from './ConfirmStatus'
 
 import {
   persistStore,
@@ -14,7 +15,8 @@ import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
     customer: customerReducer,
-    VA_Response: VA_ResponseReducer
+    VA_Response: VA_ResponseReducer,
+    status : transactionStatusReducer
 });
 
 const persistConfig = {
@@ -27,7 +29,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
+    getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
